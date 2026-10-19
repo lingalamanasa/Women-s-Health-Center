@@ -339,21 +339,23 @@ function initForms() {
   leadForms.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      // Form validation check
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // After filling the forms validly, redirect to 404 error page only
       const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn ? submitBtn.innerText : 'Submit';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Confirming Booking...';
+        submitBtn.innerText = 'Processing...';
       }
 
       setTimeout(() => {
-        showToast('✓ Appointment Request Received! Our medical coordinator will call you within 10 minutes.');
-        form.reset();
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerText = originalText;
-        }
-      }, 900);
+        window.location.href = '404.html';
+      }, 300);
     });
   });
 }
