@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
   initPreloader();
   initHeroCarousel();
+  initDashboardFeatures();
 }
 
 /* --------------------------------------------------------------------------
@@ -240,13 +241,34 @@ function initAuthLogic() {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const emailInput = document.getElementById('loginEmail');
-      const email = emailInput ? emailInput.value : 'patient@thestackly.com';
+      const inputVal = emailInput && emailInput.value ? emailInput.value.trim() : (currentRole === 'admin' ? 'director.shilpi@thestackly.com' : 'lingalamanasa123@gmail.com');
       
+      let email = inputVal;
+      let userName = '';
+      if (inputVal.includes('@')) {
+        email = inputVal;
+        const prefix = inputVal.split('@')[0];
+        userName = prefix.charAt(0).toUpperCase() + prefix.slice(1);
+      } else {
+        userName = inputVal;
+        email = inputVal.toLowerCase().replace(/\s+/g, '') + '@thestackly.com';
+      }
+
+      let initials = '';
+      const parts = userName.trim().split(/\s+/);
+      if (parts.length >= 2) {
+        initials = (parts[0][0] + parts[1][0]).toUpperCase();
+      } else {
+        initials = userName.slice(0, 2).toUpperCase();
+      }
+
       // Save session
       localStorage.setItem('stackly_user_email', email);
+      localStorage.setItem('stackly_user_name', userName);
+      localStorage.setItem('stackly_user_initials', initials);
       localStorage.setItem('stackly_user_role', currentRole);
 
-      showToast(`Welcome! Signing you in as ${currentRole.toUpperCase()}...`);
+      showToast(`Welcome! Signing you in as ${userName}...`);
 
       setTimeout(() => {
         if (currentRole === 'admin') {
@@ -263,13 +285,22 @@ function initAuthLogic() {
   if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const fnInput = document.getElementById('signupFirstName');
+      const lnInput = document.getElementById('signupLastName');
       const emailInput = document.getElementById('signupEmail');
-      const email = emailInput ? emailInput.value : 'patient@thestackly.com';
+
+      const fn = fnInput && fnInput.value ? fnInput.value.trim() : 'Manasa';
+      const ln = lnInput && lnInput.value ? lnInput.value.trim() : 'Lingala';
+      const email = emailInput && emailInput.value ? emailInput.value.trim() : 'lingalamanasa123@gmail.com';
+      const userName = `${fn} ${ln}`.trim();
+      const initials = (fn[0] + (ln ? ln[0] : (fn[1] || 'M'))).toUpperCase();
 
       localStorage.setItem('stackly_user_email', email);
+      localStorage.setItem('stackly_user_name', userName);
+      localStorage.setItem('stackly_user_initials', initials);
       localStorage.setItem('stackly_user_role', currentRole);
 
-      showToast(`Account Created Successfully! Redirecting to ${currentRole.toUpperCase()} Dashboard...`);
+      showToast(`Account Created Successfully! Welcome ${userName}!`);
 
       setTimeout(() => {
         if (currentRole === 'admin') {
@@ -301,9 +332,91 @@ window.fillDemoCredentials = function(role) {
 };
 
 /* --------------------------------------------------------------------------
+   Dynamic Dashboard User Sync (Auto-Syncs Logged-in Name, Email & Avatar)
+   -------------------------------------------------------------------------- */
+window.syncDashboardUserInfo = function() {
+  const isDashboard = document.querySelector('.dash-sidebar, .dash-main');
+  if (!isDashboard) return;
+
+  const isAdminPage = window.location.pathname.includes('admin') || 
+                      document.querySelector('.mobile-dash-brand span:last-child')?.textContent.includes('ADMIN');
+
+  const userRole = localStorage.getItem('stackly_user_role') || (isAdminPage ? 'admin' : 'user');
+  let currentEmail = localStorage.getItem('stackly_user_email');
+  let currentName = localStorage.getItem('stackly_user_name');
+  let currentInitials = localStorage.getItem('stackly_user_initials');
+
+  if (isAdminPage && userRole === 'admin' && currentEmail && currentEmail !== 'lingalamanasa123@gmail.com') {
+    // Admin has logged in with particular email
+    if (!currentName) {
+      const p = currentEmail.split('@')[0];
+      currentName = p.charAt(0).toUpperCase() + p.slice(1);
+    }
+  } else if (isAdminPage && userRole !== 'admin') {
+    // Default admin view
+    currentEmail = 'director.shilpi@thestackly.com';
+    currentName = 'Dr. Shilpi Singh';
+    currentInitials = 'DS';
+  } else {
+    // User dashboard
+    if (!currentEmail) currentEmail = 'lingalamanasa123@gmail.com';
+    if (!currentName) {
+      if (currentEmail.includes('@')) {
+        const p = currentEmail.split('@')[0];
+        currentName = p.charAt(0).toUpperCase() + p.slice(1);
+      } else {
+        currentName = currentEmail;
+      }
+    }
+    if (!currentInitials) {
+      const parts = currentName.trim().split(/\s+/);
+      if (parts.length >= 2) {
+        currentInitials = (parts[0][0] + parts[1][0]).toUpperCase();
+      } else {
+        currentInitials = currentName.slice(0, 2).toUpperCase();
+      }
+    }
+  }
+
+  // 1. Update Top-Right Header Email
+  document.querySelectorAll('.dash-header-email').forEach(el => {
+    el.textContent = currentEmail;
+  });
+
+  // 2. Update Top-Right Header Avatar Circle
+  document.querySelectorAll('.dash-header-user > div').forEach(el => {
+    el.textContent = currentInitials;
+  });
+
+  // 3. Update Welcome Greeting Title
+  document.querySelectorAll('.dash-welcome-title').forEach(el => {
+    if (el.textContent.includes('Welcome back') || el.hasAttribute('data-welcome') || el.classList.contains('dyn-welcome')) {
+      el.innerHTML = `Welcome back, <span class="dyn-user-name">${currentName}</span> 👋`;
+    }
+  });
+
+  // 4. Update Sidebar Profile Footer
+  document.querySelectorAll('.user-profile-name').forEach(el => {
+    el.textContent = currentName;
+  });
+
+  document.querySelectorAll('.user-profile-role').forEach(el => {
+    if (el.textContent.includes('@') || el.classList.contains('user-role-email') || !isAdminPage) {
+      el.textContent = currentEmail;
+    }
+  });
+
+  document.querySelectorAll('.user-avatar-circle').forEach(el => {
+    el.textContent = currentInitials;
+  });
+};
+
+/* --------------------------------------------------------------------------
    Dashboard Features (User & Admin)
    -------------------------------------------------------------------------- */
 function initDashboardFeatures() {
+  syncDashboardUserInfo();
+
   // Mobile Dashboard Sidebar Toggle
   const dashMenuBtn = document.getElementById('dashMenuToggle');
   const dashSidebar = document.querySelector('.dash-sidebar');
@@ -365,6 +478,8 @@ window.closeBookingModal = function() {
 
 window.logoutUser = function() {
   localStorage.removeItem('stackly_user_email');
+  localStorage.removeItem('stackly_user_name');
+  localStorage.removeItem('stackly_user_initials');
   localStorage.removeItem('stackly_user_role');
   showToast('Logging out from Stackly Care Cloud...');
   setTimeout(() => {
