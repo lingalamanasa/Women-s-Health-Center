@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In to Stackly Care Cloud | Stackly Women's Health Center</title>
+  <meta name="description" content="Sign In to Stackly Care Cloud for Patient Health Telemetry or Hospital Clinical Admin Cockpit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="auth-page-wrapper">
+    <div class="auth-card">
+      <!-- Top Card Header -->
+      <div class="auth-card-top-bar">
+        <a href="index.html" class="btn-back-home">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Back to Home</span>
+        </a>
+        <div class="portal-tag">
+          <span>🌐 Telemetry Portal</span>
+        </div>
+      </div>
+
+      <!-- Preview Image Banner (Matches Screenshot 3) -->
+      <div class="auth-preview-banner">
+        <img src="assets/img/telemetry-preview.webp" alt="Live Executive Health Telemetry Engine">
+        <div class="auth-banner-label">
+          <span>⚡ Live Patient Care & Health Telemetry Engine</span>
+        </div>
+      </div>
+
+      <div class="auth-card-body">
+        <!-- Logo & Cloud Badge -->
+        <div class="auth-logo-center">
+          <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+          <span class="logo-brand-name" style="font-size:24px;">STACKLY</span>
+          <span class="auth-cloud-badge">CARE CLOUD</span>
+        </div>
+
+        <h1 class="auth-title">Sign In to Stackly</h1>
+        <p class="auth-subtitle" id="roleNotice">Select your role to sign in</p>
+
+        <!-- Role Toggle Tabs [User] [Admin] (Matches Screenshot 3) -->
+        <div class="role-toggle-group">
+          <button type="button" class="role-toggle-btn active" id="toggleUser" data-role="user">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>User</span>
+          </button>
+          <button type="button" class="role-toggle-btn" id="toggleAdmin" data-role="admin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>Admin</span>
+          </button>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label class="auth-input-label">Email or Staff ID *</label>
+            <input type="text" id="loginEmail" class="auth-input" placeholder="lingalamanasa123@gmail.com" required>
+          </div>
+
+          <div class="form-group">
+            <div class="auth-input-label">
+              <span>Password *</span>
+              <a href="404.html">Forgot password?</a>
+            </div>
+            <input type="password" id="loginPassword" class="auth-input" placeholder="••••••••" required value="PatientPass2026!">
+          </div>
+
+          <div class="auth-row-meta">
+            <label class="remember-label">
+              <input type="checkbox" checked style="accent-color:#967BB6;">
+              <span>Remember this device</span>
+            </label>
+            <a href="404.html" class="ssl-badge" style="text-decoration:none;cursor:pointer;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>256–Bit SSL</span>
+            </a>
+          </div>
+
+          <button type="submit" class="btn-auth-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+            <span>Sign In</span>
+          </button>
+        </form>
+
+        <div class="auth-footer-prompt">
+          Don't have an account yet? <a href="signup.html">Register Organization or User</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

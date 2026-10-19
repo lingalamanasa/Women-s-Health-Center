@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maternity Journey | Stackly Women's Health Center</title>
+  <meta name="description" content="Pregnancy Milestones & Birthing Plan">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle">CARE CLOUD PORTAL</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-user.html" class=""><span>🏠</span> <span>My Health Dashboard</span></a></li>
+        <li><a href="user-vitals.html" class=""><span>💓</span> <span>Telemetry & Vitals</span></a></li>
+        <li><a href="user-consultations.html" class=""><span>📅</span> <span>Consultations & OPD</span></a></li>
+        <li><a href="user-scans.html" class=""><span>📡</span> <span>4D Scans & Lab Reports</span></a></li>
+        <li><a href="user-maternity.html" class=" active"><span>🤰</span> <span>Maternity Journey</span></a></li>
+        <li><a href="user-prescriptions.html" class=""><span>💊</span> <span>Digital Prescriptions</span></a></li>
+        <li><a href="user-billing.html" class=""><span>💳</span> <span>Insurance & Billing</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle">LM</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Lingalamanasa123</div>
+              <div class="user-profile-role">lingalamanasa123@gmail..</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#F3E8FF;color:#3B0764;padding:2px 6px;border-radius:4px;font-weight:800;">CARE</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">lingalamanasa123@gmail.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#967BB6;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;">
+            LM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Your Maternity Journey &amp; Milestones 🤰</h1>
+            <p class="dash-welcome-sub">Week-by-week fetal anatomical development, customized birthing plan, and LDRP suite preferences.</p>
+          </div>
+          <button onclick="showToast('Exporting Pregnancy Milestone Keepsake Journal...')" class="ui-btn-action primary">
+            <span>📖 DOWNLOAD MILESTONE JOURNAL</span>
+          </button>
+        </div>
+
+        <!-- Section 1: Gestational Timeline & Trimester Milestone Navigator -->
+        <div class="ui-section-card" style="background:linear-gradient(135deg, #ffffff 0%, #F3E8FF 100%);">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🌟</span> Section 1: Gestational Timeline &amp; Baby Size Navigator</h3>
+              <div class="ui-section-subtitle">Week 24 Day 3 • Second Trimester • 110 Days until estimated due date (EDD)</div>
+            </div>
+            <span class="ui-badge plum">Trimester 2 (Golden Phase)</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:20px;text-align:center;">
+              <div style="font-size:36px;margin-bottom:8px;">🥭</div>
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">BABY IS THE SIZE OF A</div>
+              <div style="font-size:22px;font-weight:900;color:#3B0764;margin:4px 0;">Papaya / Ear of Corn</div>
+              <div style="font-size:12px;color:#5B446E;">Length: ~30 cm • Weight: ~600g</div>
+            </div>
+
+            <div class="ui-card" style="padding:20px;text-align:center;">
+              <div style="font-size:36px;margin-bottom:8px;">📅</div>
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">ESTIMATED DUE DATE (EDD)</div>
+              <div style="font-size:22px;font-weight:900;color:#1E0533;margin:4px 0;">August 2, 2026</div>
+              <div style="font-size:12px;color:#5B446E;">Based on Dating Scan at 8 Weeks</div>
+            </div>
+
+            <div class="ui-card" style="padding:20px;text-align:center;">
+              <div style="font-size:36px;margin-bottom:8px;">🧠</div>
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">BRAIN &amp; SENSORY MILESTONE</div>
+              <div style="font-size:20px;font-weight:900;color:#967BB6;margin:4px 0;">Hearing Your Voice</div>
+              <div style="font-size:12px;color:#5B446E;">Auditory cochlea fully functioning</div>
+            </div>
+
+            <div class="ui-card" style="padding:20px;text-align:center;">
+              <div style="font-size:36px;margin-bottom:8px;">🫁</div>
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">LUNG DEVELOPMENT</div>
+              <div style="font-size:20px;font-weight:900;color:#967BB6;margin:4px 0;">Surfactant Production</div>
+              <div style="font-size:12px;color:#5B446E;">Branching respiratory tree</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Fetal Biometry & Growth Trajectory Percentiles -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📈</span> Section 2: Fetal Biometry &amp; Ultrasound Growth Trajectory</h3>
+              <div class="ui-section-subtitle">Hadlock equation calculations based on Dr. Meera's latest sonography</div>
+            </div>
+            <span class="ui-badge success">54th Percentile (Ideal)</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;color:#5B446E;font-weight:700;">BIPARIETAL DIAMETER (BPD)</span>
+              <div style="font-size:24px;font-weight:800;color:#1E0533;margin:6px 0;">60.2 mm</div>
+              <div style="font-size:11.5px;color:#967BB6;">Matches 24w 4d</div>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;color:#5B446E;font-weight:700;">HEAD CIRCUMFERENCE (HC)</span>
+              <div style="font-size:24px;font-weight:800;color:#1E0533;margin:6px 0;">224 mm</div>
+              <div style="font-size:11.5px;color:#967BB6;">Matches 24w 2d</div>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;color:#5B446E;font-weight:700;">ABDOMINAL CIRCUMFERENCE</span>
+              <div style="font-size:24px;font-weight:800;color:#1E0533;margin:6px 0;">198 mm</div>
+              <div style="font-size:11.5px;color:#967BB6;">Matches 24w 3d</div>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;color:#5B446E;font-weight:700;">FEMUR LENGTH (FL)</span>
+              <div style="font-size:24px;font-weight:800;color:#1E0533;margin:6px 0;">43.8 mm</div>
+              <div style="font-size:11.5px;color:#967BB6;">Matches 24w 3d</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Maternal Symptom Tracker & Wellness Journal -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📝</span> Section 3: Daily Symptom &amp; Physiological Wellness Log</h3>
+              <div class="ui-section-subtitle">Real-time symptom severity logging evaluated by maternity nurses</div>
+            </div>
+            <button onclick="showToast('Symptom Logger Saved.')" class="ui-btn-action outline">+ Log Today's Symptoms</button>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Braxton Hicks Mild Contractions</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Logged 1 episode post-evening walk • Painless tightening lasting 25 seconds. Normal physiological practice.</p>
+            </div>
+            <span class="ui-badge success">Physiological Normal</span>
+          </div>
+
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Lower Back &amp; Pelvic Girdle Support</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Mild fatigue in lumbar region • Relieved by maternity pregnancy pillow and pelvic tilts.</p>
+            </div>
+            <span class="ui-badge amber">Mild / Managed</span>
+          </div>
+        </div>
+
+        <!-- Section 4: Personalized Birth Plan & LDRP Suite Customizer -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛋️</span> Section 4: Personalized Birth Plan &amp; LDRP Suite Preferences</h3>
+              <div class="ui-section-subtitle">Collaboratively planned with Dr. Shilpi Singh for respectful birthing</div>
+            </div>
+            <button onclick="showToast('Birth Plan Saved to Clinical Record.')" class="ui-btn-action primary">Save Preferences</button>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin-bottom:8px;">Birthing Philosophy</h4>
+              <div style="font-size:13px;color:#1E0533;line-height:1.6;">
+                ✓ Priority on Normal Physiological Delivery<br>
+                ✓ Delayed cord clamping (2-3 mins)<br>
+                ✓ Immediate skin-to-skin golden hour
+              </div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin-bottom:8px;">Pain Relief Preferences</h4>
+              <div style="font-size:13px;color:#1E0533;line-height:1.6;">
+                ✓ Ergonomic birthing ball &amp; walking<br>
+                ✓ Warm shower hydrotherapy<br>
+                ✓ Epidural analgesia on demand
+              </div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin-bottom:8px;">LDRP Suite Comforts</h4>
+              <div style="font-size:13px;color:#1E0533;line-height:1.6;">
+                ✓ Companion birth partner present<br>
+                ✓ Dimmed ambient lighting<br>
+                ✓ Bluetooth soothing music playlist
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Antenatal Fitness & Lamaze Preparation Classes -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🧘‍♀️</span> Section 5: Antenatal Fitness, Yoga &amp; Lamaze Workshops</h3>
+              <div class="ui-section-subtitle">Live weekly hospital batches and virtual breathing sessions</div>
+            </div>
+            <span class="ui-badge success">Enrolled</span>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Saturday Lamaze: Labor Breathing Techniques &amp; Partner Coaching</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Saturday 11:00 AM • Hospital Antenatal Studio • Led by Senior Midwife R. Lakshmi</p>
+            </div>
+            <button onclick="showToast('Seat confirmed for Saturday Lamaze Workshop!')" class="ui-btn-action outline">Confirm Attendance</button>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

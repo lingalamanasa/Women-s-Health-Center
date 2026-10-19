@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bed Occupancy & Wards | Stackly Women's Health Center</title>
+  <meta name="description" content="Hospital Ward Census & Inpatient Management">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar admin-theme" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle" style="color:#967BB6;">HOSPITAL ADMIN COCKPIT</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-admin.html" class=""><span>📊</span> <span>Executive Overview</span></a></li>
+        <li><a href="admin-queue.html" class=""><span>🎫</span> <span>OPD Token Queue</span></a></li>
+        <li><a href="admin-surgery.html" class=""><span>🔬</span> <span>OT & Surgery Roster</span></a></li>
+        <li><a href="admin-admissions.html" class=" active"><span>🏥</span> <span>Bed Occupancy & Wards</span></a></li>
+        <li><a href="admin-nicu.html" class=""><span>🍼</span> <span>Level-3 NICU Telemetry</span></a></li>
+        <li><a href="admin-lab.html" class=""><span>🧪</span> <span>Diagnostic Laboratory</span></a></li>
+        <li><a href="admin-billing.html" class=""><span>💳</span> <span>Revenue & TPA Claims</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" style="background:#19042B;">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle" style="background:#967BB6;color:#111;">DS</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Dr. Shilpi Singh</div>
+              <div class="user-profile-role">Chief Clinical Director</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT ADMIN</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#24063E;color:#967BB6;padding:2px 6px;border-radius:4px;font-weight:800;">ADMIN</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">director.shilpi@thestackly.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#24063E;color:#967BB6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1.5px solid #967BB6;">
+            ADM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Bed Occupancy &amp; Maternity Ward Census 🏥</h1>
+            <p class="dash-welcome-sub">Luxury LDRP birthing suites, post-operative wards, and patient admission workflow.</p>
+          </div>
+          <button onclick="showToast('Opening Direct Ward Admission Form...')" class="ui-btn-action primary">
+            <span>+ ADMIT NEW PATIENT</span>
+          </button>
+        </div>
+
+        <!-- Section 1: Real-Time Bed Occupancy Census -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛌</span> Section 1: Real-Time Hospital Bed Census (Total 48 Beds)</h3>
+              <div class="ui-section-subtitle">Real-time status of birthing suites, recovery wards, and infant cribs</div>
+            </div>
+            <span class="ui-badge success">10 Beds Available</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">TOTAL ADMISSIONS</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:6px 0;">38 Beds</div>
+              <span style="font-size:12px;color:#967BB6;">79% Capacity Utilization</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">LDRP SUITES OCCUPIED</span>
+              <div style="font-size:32px;font-weight:900;color:#3B0764;margin:6px 0;">7 / 8</div>
+              <span style="font-size:12px;color:#3B0764;">1 Ready for Sanitization</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">DISCHARGES SCHEDULED</span>
+              <div style="font-size:32px;font-weight:900;color:#967BB6;margin:6px 0;">4 Today</div>
+              <span style="font-size:12px;color:#967BB6;">All pediatric clearances done</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">AVG HOSPITAL STAY</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:6px 0;">3.2 Days</div>
+              <span style="font-size:12px;color:#967BB6;">Fast maternal recovery</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Ward Breakdown & LDRP Suites Allocation -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛋️</span> Section 2: Luxury LDRP Birthing Suites Status Board</h3>
+              <div class="ui-section-subtitle">Single-room labor, delivery, recovery, and postpartum suites</div>
+            </div>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:16px;border-left:4px solid #3B0764;">
+              <div style="display:flex;justify-content:space-between;">
+                <strong>SUITE 101</strong>
+                <span class="ui-badge amber">Active Labor</span>
+              </div>
+              <p style="font-size:13px;color:#1E0533;margin:8px 0 4px 0;">Anitha R. (39w 2d)</p>
+              <div style="font-size:12px;color:#5B446E;">Dr. Shilpi Singh • Nurse Mary</div>
+            </div>
+
+            <div class="ui-card" style="padding:16px;border-left:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <strong>SUITE 102</strong>
+                <span class="ui-badge success">Postpartum Day 1</span>
+              </div>
+              <p style="font-size:13px;color:#1E0533;margin:8px 0 4px 0;">Sunitha M. (Baby Girl 3.1kg)</p>
+              <div style="font-size:12px;color:#5B446E;">Normal Delivery • Lactation ok</div>
+            </div>
+
+            <div class="ui-card" style="padding:16px;border-left:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <strong>SUITE 103</strong>
+                <span class="ui-badge success">Postpartum Day 2</span>
+              </div>
+              <p style="font-size:13px;color:#1E0533;margin:8px 0 4px 0;">Meenakshi K. (Baby Boy)</p>
+              <div style="font-size:12px;color:#5B446E;">Discharge planned tomorrow</div>
+            </div>
+
+            <div class="ui-card" style="padding:16px;border-left:4px solid #967BB6;background:#FAF9F5;">
+              <div style="display:flex;justify-content:space-between;">
+                <strong>SUITE 104</strong>
+                <span class="ui-badge blue">Vacant / Ready</span>
+              </div>
+              <p style="font-size:13px;color:#1E0533;margin:8px 0 4px 0;">Sterilized &amp; Sanitized</p>
+              <button onclick="showToast('Assigned Suite 104 to incoming admission.')" class="ui-btn-action primary" style="width:100%;justify-content:center;margin-top:6px;padding:4px 10px;font-size:12px;">Assign Suite</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Patient Admission & Triage Workflow -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📥</span> Section 3: Patient Admission &amp; Obstetric Triage Workflow</h3>
+              <div class="ui-section-subtitle">Instant biometric verification, bed tagging, and digital wristband generation</div>
+            </div>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Quick Digital IPD Registration</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Scan patient QR card or search MRN to instantly assign bed and trigger nurse call bell.</p>
+            </div>
+            <button onclick="showToast('Opening Rapid IPD Registration Console...')" class="ui-btn-action outline">Register Admission</button>
+          </div>
+        </div>
+
+        <!-- Section 4: Discharge Planning & Neonatal Clearance Pipeline -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🎓</span> Section 4: Discharge Clearance &amp; Pediatric Sign-Off Pipeline</h3>
+              <div class="ui-section-subtitle">3-Stage clearance: Obstetrician + Neonatal Pediatrician + Final TPA billing</div>
+            </div>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Bed 204 — Priya K. (Post LSCS Day 3)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Dr. Shilpi suture check: Passed • Pediatrician neonatal clearance: Passed • TPA settlement: Done</p>
+            </div>
+            <button onclick="showToast('Discharge summary generated & sent to patient WhatsApp.')" class="ui-btn-action primary">Generate Discharge</button>
+          </div>
+        </div>
+
+        <!-- Section 5: Ward Nursing Shift & Patient Telemetry -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>👩‍⚕️</span> Section 5: Ward Nursing Shift &amp; Patient-to-Nurse Staffing Ratio</h3>
+              <div class="ui-section-subtitle">NABH standard 1:2 in LDRP suites and 1:1 in active labor</div>
+            </div>
+            <span class="ui-badge success">Staffing Compliant</span>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Morning Shift (7am–3pm)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">14 Registered Nurses on duty • Lead Incharge: Sr. Rebecca</p>
+              <span class="ui-badge success">Active Shift</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Evening Shift (3pm–11pm)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">12 Registered Nurses rostered • Lead Incharge: Sr. Lakshmi</p>
+              <span class="ui-badge blue">Standby Handover</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Night Shift (11pm–7am)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">10 Registered Nurses + 2 Midwives on labor triage</p>
+              <span class="ui-badge outline">Scheduled</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

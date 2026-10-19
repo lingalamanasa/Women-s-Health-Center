@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level-3 NICU Telemetry | Stackly Women's Health Center</title>
+  <meta name="description" content="Neonatal Intensive Care Unit Monitoring">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar admin-theme" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle" style="color:#967BB6;">HOSPITAL ADMIN COCKPIT</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-admin.html" class=""><span>📊</span> <span>Executive Overview</span></a></li>
+        <li><a href="admin-queue.html" class=""><span>🎫</span> <span>OPD Token Queue</span></a></li>
+        <li><a href="admin-surgery.html" class=""><span>🔬</span> <span>OT & Surgery Roster</span></a></li>
+        <li><a href="admin-admissions.html" class=""><span>🏥</span> <span>Bed Occupancy & Wards</span></a></li>
+        <li><a href="admin-nicu.html" class=" active"><span>🍼</span> <span>Level-3 NICU Telemetry</span></a></li>
+        <li><a href="admin-lab.html" class=""><span>🧪</span> <span>Diagnostic Laboratory</span></a></li>
+        <li><a href="admin-billing.html" class=""><span>💳</span> <span>Revenue & TPA Claims</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" style="background:#19042B;">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle" style="background:#967BB6;color:#111;">DS</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Dr. Shilpi Singh</div>
+              <div class="user-profile-role">Chief Clinical Director</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT ADMIN</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#24063E;color:#967BB6;padding:2px 6px;border-radius:4px;font-weight:800;">ADMIN</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">director.shilpi@thestackly.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#24063E;color:#967BB6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1.5px solid #967BB6;">
+            ADM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Level-3 NICU Telemetry &amp; Neonatal Care 🍼</h1>
+            <p class="dash-welcome-sub">Tertiary neonatal intensive care, Draeger incubators, CPAP ventilation, and micro-preemie monitoring.</p>
+          </div>
+          <button onclick="showToast('NICU Central Telemetry stream refreshed.')" class="ui-btn-action primary">
+            <span>⚡ REFRESH NICU SENSORS</span>
+          </button>
+        </div>
+
+        <!-- Section 1: NICU Incubator Census & Acuity Scoreboard -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>👶</span> Section 1: Level-3 NICU Incubator Census (12 Total Cribs)</h3>
+              <div class="ui-section-subtitle">Salem Center tertiary neonatal critical care facility</div>
+            </div>
+            <span class="ui-badge success">8 Occupied • 4 Available</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;border-left:4px solid #967BB6;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">ACTIVE NEONATES</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:6px 0;">8 Babies</div>
+              <span style="font-size:12px;color:#967BB6;">Gestational age: 28w to 36w</span>
+            </div>
+            <div class="ui-card" style="padding:18px;border-left:4px solid #3B0764;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">CPAP / VENTILATED</span>
+              <div style="font-size:32px;font-weight:900;color:#3B0764;margin:6px 0;">2 Babies</div>
+              <span style="font-size:12px;color:#5B446E;">Bubble CPAP respiratory support</span>
+            </div>
+            <div class="ui-card" style="padding:18px;border-left:4px solid #967BB6;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">PHOTOTHERAPY UNITS</span>
+              <div style="font-size:32px;font-weight:900;color:#967BB6;margin:6px 0;">3 Babies</div>
+              <span style="font-size:12px;color:#3B0764;">Neonatal hyperbilirubinemia</span>
+            </div>
+            <div class="ui-card" style="padding:18px;border-left:4px solid #967BB6;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">ROOMING-IN READY</span>
+              <div style="font-size:32px;font-weight:900;color:#967BB6;margin:6px 0;">3 Babies</div>
+              <span style="font-size:12px;color:#967BB6;">Kangaroo care &amp; breast feeding</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Central Neonatal Telemetry Monitor -->
+        <div class="ui-section-card" style="background:#1E0533;color:#ffffff;border:none;">
+          <div class="ui-section-title-wrap" style="border-color:#24063E;">
+            <div class="ui-section-title-group">
+              <h3 style="color:#ffffff;"><span>💓</span> Section 2: Central Multipara Neonatal Telemetry Wall</h3>
+              <div class="ui-section-subtitle" style="color:#8C75A1;">Real-time continuous pulse oximetry, heart rate, and Draeger incubator thermoregulation</div>
+            </div>
+            <span class="ui-badge success"><span class="ui-pulse-dot"></span> All Traces Stable</span>
+          </div>
+          <div class="ui-grid-4">
+            <div style="background:#24063E;padding:16px;border-radius:12px;border:1px solid #1E0533;">
+              <div style="display:flex;justify-content:space-between;color:#8C75A1;font-size:11px;">
+                <span>CRIB 1 (PRE-TERM 30W)</span>
+                <span class="ui-badge success">Stable</span>
+              </div>
+              <div style="font-size:24px;font-weight:900;color:#967BB6;margin:8px 0;">HR: 138 bpm</div>
+              <div style="font-size:12px;color:#DDD6FE;">SpO2: 96% • Temp: 36.8°C</div>
+            </div>
+
+            <div style="background:#24063E;padding:16px;border-radius:12px;border:1px solid #1E0533;">
+              <div style="display:flex;justify-content:space-between;color:#8C75A1;font-size:11px;">
+                <span>CRIB 2 (CPAP SUPPORT)</span>
+                <span class="ui-badge success">Stable</span>
+              </div>
+              <div style="font-size:24px;font-weight:900;color:#967BB6;margin:8px 0;">HR: 142 bpm</div>
+              <div style="font-size:12px;color:#DDD6FE;">SpO2: 95% • PEEP: 5 cmH2O</div>
+            </div>
+
+            <div style="background:#24063E;padding:16px;border-radius:12px;border:1px solid #1E0533;">
+              <div style="display:flex;justify-content:space-between;color:#8C75A1;font-size:11px;">
+                <span>CRIB 3 (PHOTOTHERAPY)</span>
+                <span class="ui-badge success">Stable</span>
+              </div>
+              <div style="font-size:24px;font-weight:900;color:#967BB6;margin:8px 0;">HR: 134 bpm</div>
+              <div style="font-size:12px;color:#DDD6FE;">Bilirubin: 11.2 mg/dL (Dropping)</div>
+            </div>
+
+            <div style="background:#24063E;padding:16px;border-radius:12px;border:1px solid #1E0533;">
+              <div style="display:flex;justify-content:space-between;color:#8C75A1;font-size:11px;">
+                <span>CRIB 4 (GROWTH FEEDER)</span>
+                <span class="ui-badge success">Stable</span>
+              </div>
+              <div style="font-size:24px;font-weight:900;color:#967BB6;margin:8px 0;">HR: 130 bpm</div>
+              <div style="font-size:12px;color:#DDD6FE;">Weight: 1.84 kg (+45g today)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Kangaroo Mother Care & Expressed Milk Log -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🤱</span> Section 3: Kangaroo Mother Care (KMC) &amp; Human Milk Bank</h3>
+              <div class="ui-section-subtitle">Promoting maternal bonding and zero artificial formula policy</div>
+            </div>
+            <span class="ui-badge plum">100% Mother's Milk</span>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Daily KMC Skin-to-Skin Session Tracker</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">6 Mothers completed morning 2-hour KMC sessions • Neonatal body temperatures stabilized naturally.</p>
+            </div>
+            <span class="ui-badge success">Completed</span>
+          </div>
+        </div>
+
+        <!-- Section 4: Neonatal Resuscitation & Emergency Code Pink Protocol -->
+        <div class="ui-section-card" style="background:#F3E8FF;border-color:#DDD6FE;">
+          <div class="ui-section-title-wrap" style="border-color:#DDD6FE;">
+            <div class="ui-section-title-group">
+              <h3 style="color:#3B0764;"><span>🚨</span> Section 4: Neonatal Resuscitation &amp; Emergency Code Pink System</h3>
+              <div class="ui-section-subtitle" style="color:#3B0764;">Immediate overhead alarm and T-piece resuscitator deployment</div>
+            </div>
+            <span class="ui-badge amber">Code Pink Sentinel Active</span>
+          </div>
+          <div class="ui-interactive-row" style="background:#ffffff;">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Neopuff T-Piece Resuscitation Warmers</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">All 3 warmers tested at 8:00 AM • Blended oxygen/air mixers calibrated to 21%-30% FiO2</p>
+            </div>
+            <span class="ui-badge success">Ready 24×7</span>
+          </div>
+        </div>
+
+        <!-- Section 5: Weight Gain Milestones & Pediatric Discharge Criteria -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📈</span> Section 5: Weight Gain Milestones &amp; Pediatric Discharge Gate</h3>
+              <div class="ui-section-subtitle">Discharge benchmark: Consistent 20g/day weight gain and independent sucking feed</div>
+            </div>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Baby of Lakshmi (32w)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">Current: 1.95 kg (Birth: 1.4 kg) • Sucking feeds established</p>
+              <span class="ui-badge success">Discharge Tomorrow</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Baby of Revathi (31w)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">Current: 1.80 kg (Birth: 1.35 kg) • Tolerating 30ml feeds</p>
+              <span class="ui-badge blue">Discharge in 3 Days</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Baby of Deepa (34w)</h4>
+              <p style="font-size:13px;color:#5B446E;margin:6px 0;">Current: 2.10 kg (Birth: 1.9 kg) • Bilirubin clear</p>
+              <span class="ui-badge success">Rooming In with Mother</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

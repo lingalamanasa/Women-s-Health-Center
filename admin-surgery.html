@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OT & Surgery Roster | Stackly Women's Health Center</title>
+  <meta name="description" content="Modular Surgical Theaters & Laparoscopy Roster">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar admin-theme" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle" style="color:#967BB6;">HOSPITAL ADMIN COCKPIT</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-admin.html" class=""><span>📊</span> <span>Executive Overview</span></a></li>
+        <li><a href="admin-queue.html" class=""><span>🎫</span> <span>OPD Token Queue</span></a></li>
+        <li><a href="admin-surgery.html" class=" active"><span>🔬</span> <span>OT & Surgery Roster</span></a></li>
+        <li><a href="admin-admissions.html" class=""><span>🏥</span> <span>Bed Occupancy & Wards</span></a></li>
+        <li><a href="admin-nicu.html" class=""><span>🍼</span> <span>Level-3 NICU Telemetry</span></a></li>
+        <li><a href="admin-lab.html" class=""><span>🧪</span> <span>Diagnostic Laboratory</span></a></li>
+        <li><a href="admin-billing.html" class=""><span>💳</span> <span>Revenue & TPA Claims</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" style="background:#19042B;">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle" style="background:#967BB6;color:#111;">DS</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Dr. Shilpi Singh</div>
+              <div class="user-profile-role">Chief Clinical Director</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT ADMIN</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#24063E;color:#967BB6;padding:2px 6px;border-radius:4px;font-weight:800;">ADMIN</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">director.shilpi@thestackly.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#24063E;color:#967BB6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1.5px solid #967BB6;">
+            ADM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">OT &amp; Surgical Theater Roster 🔬</h1>
+            <p class="dash-welcome-sub">Modular operating theaters, keyhole laparoscopy scheduling, and sterile laminar flow sentinels.</p>
+          </div>
+          <button onclick="showToast('Opening Emergency Surgical Roster Scheduler...')" class="ui-btn-action primary">
+            <span>+ SCHEDULE SURGERY</span>
+          </button>
+        </div>
+
+        <!-- Section 1: Modular Surgical Suites Operational Status -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛡️</span> Section 1: Modular OT Sterility &amp; Positive Pressure Sentinel</h3>
+              <div class="ui-section-subtitle">Class 100 laminar airflow continuous bacteriological monitoring</div>
+            </div>
+            <span class="ui-badge success">All 3 Theaters Certified</span>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:16px;font-weight:800;color:#1E0533;">OT 1 — Major Obstetric</h4>
+                <span class="ui-badge amber">In Procedure</span>
+              </div>
+              <div style="font-size:13px;color:#5B446E;margin:10px 0;">Temperature: 20.4°C • Humidity: 48% • Positive Pressure: +22 Pa</div>
+              <span class="ui-badge success">HEPA Filtration: 99.997%</span>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:16px;font-weight:800;color:#1E0533;">OT 2 — Laparoscopy Modular</h4>
+                <span class="ui-badge success">Sterile &amp; Ready</span>
+              </div>
+              <div style="font-size:13px;color:#5B446E;margin:10px 0;">Temperature: 19.8°C • Humidity: 46% • Positive Pressure: +24 Pa</div>
+              <span class="ui-badge success">HEPA Filtration: 99.997%</span>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:16px;font-weight:800;color:#1E0533;">OT 3 — Daycare &amp; Hysteroscopy</h4>
+                <span class="ui-badge blue">Standby Available</span>
+              </div>
+              <div style="font-size:13px;color:#5B446E;margin:10px 0;">Temperature: 21.0°C • Humidity: 50% • Positive Pressure: +20 Pa</div>
+              <span class="ui-badge success">HEPA Filtration: 99.997%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Day's Surgical Roster & Emergency C-Section Schedule -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📋</span> Section 2: Day's Master Surgical Roster</h3>
+              <div class="ui-section-subtitle">Surgeon allocation, anesthetist assignment, and scrub nursing personnel</div>
+            </div>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">09:30 AM — Lower Segment Cesarean Section (LSCS) [OT 1]</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Patient: Deepa Saravanan (39 Weeks) • Lead Surgeon: Dr. Shilpi Singh • Anesthetist: Dr. Raman • Status: Baby delivered, Closing</p>
+            </div>
+            <span class="ui-badge amber">In Progress</span>
+          </div>
+
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">02:00 PM — Laparoscopic Ovarian Cystectomy &amp; Endometriosis Clearance [OT 2]</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Patient: Radhika M. (32 Yrs) • Lead Surgeon: Dr. Ananya Sen • Pre-op anesthesia clearance: Complete</p>
+            </div>
+            <span class="ui-badge blue">Scheduled</span>
+          </div>
+
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">04:30 PM — Diagnostic Hysteroscopy &amp; Polypectomy [OT 3]</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Patient: Shanthi K. • Lead Surgeon: Dr. Priya Sharma • Daycare discharge planned same evening</p>
+            </div>
+            <span class="ui-badge blue">Scheduled</span>
+          </div>
+        </div>
+
+        <!-- Section 3: Laparoscopic Tower & Electrosurgical Device Sentinel -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🔌</span> Section 3: Advanced Electrosurgical &amp; HD Video Tower Health</h3>
+              <div class="ui-section-subtitle">Ultrasonic dissection, CO2 pneumoperitoneum, and 4K optical endoscopy monitors</div>
+            </div>
+            <span class="ui-badge success">All Equipment Calibrated</span>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Ethicon Harmonic Scalpel Gen11</h4>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0 10px 0;">Ultrasonic tissue coagulator. Handpiece tested and calibrated today 8:00 AM.</p>
+              <span class="ui-badge success">Ready for OT 2</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <div style="font-size:15px;font-weight:800;color:#1E0533;">Olympus Visera 4K Laparoscopy</div>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0 10px 0;">Dual surgical HD monitors. Zero latency fiber optic video transmission.</p>
+              <span class="ui-badge success">Tested Optimal</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <div style="font-size:15px;font-weight:800;color:#1E0533;">Karl Storz High-Flow Insufflator</div>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0 10px 0;">Automatic heated CO2 gas supply with smoke evacuation integration.</p>
+              <span class="ui-badge success">Tanks 100% Full</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Emergency Crash C-Section Protocol Checklist -->
+        <div class="ui-section-card" style="background:#F3E8FF;border-color:#DDD6FE;">
+          <div class="ui-section-title-wrap" style="border-color:#DDD6FE;">
+            <div class="ui-section-title-group">
+              <h3 style="color:#3B0764;"><span>⚡</span> Section 4: Emergency Obstetric Crash C-Section Readiness (Decision-to-Incision &lt; 15 mins)</h3>
+              <div class="ui-section-subtitle" style="color:#3B0764;">24×7 Rapid Response for fetal distress, placental abruption, or cord prolapse</div>
+            </div>
+            <span class="ui-badge amber">Code Pink Rapid Ready</span>
+          </div>
+          <div class="ui-interactive-row" style="background:#ffffff;">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Obstetric Blood Bank Cross-Match Standby</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">4 Units O-Negative Uncrossmatched &amp; 6 Units Fresh Frozen Plasma (FFP) thawed in Blood Bank</p>
+            </div>
+            <span class="ui-badge success">Standby Verified</span>
+          </div>
+        </div>
+
+        <!-- Section 5: Surgical Audit & Zero-Infection Compliance Tracker -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📊</span> Section 5: Surgical Outcomes &amp; Infection Control Audit</h3>
+              <div class="ui-section-subtitle">Salem Center Surgical Site Infection (SSI) Rate: 0.00% across last 1,450 cases</div>
+            </div>
+            <span class="ui-badge success">NABH Benchmarked</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">TOTAL SURGERIES (2026)</span>
+              <div style="font-size:28px;font-weight:900;color:#1E0533;margin:6px 0;">418 Cases</div>
+              <span style="font-size:12px;color:#967BB6;">100% Survival Rate</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">LAPAROSCOPY SUCCESS</span>
+              <div style="font-size:28px;font-weight:900;color:#967BB6;margin:6px 0;">99.8 %</div>
+              <span style="font-size:12px;color:#5B446E;">Zero open conversions</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">AVG OT TURNAROUND</span>
+              <div style="font-size:28px;font-weight:900;color:#1E0533;margin:6px 0;">18 Mins</div>
+              <span style="font-size:12px;color:#967BB6;">Rapid sterile cycle</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">SURGICAL SITE INFECTION</span>
+              <div style="font-size:28px;font-weight:900;color:#967BB6;margin:6px 0;">0.00 %</div>
+              <span style="font-size:12px;color:#967BB6;">NABH Standard Met</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+Created At: 2026-10-15T14:55:21+05:30
+Completed At: 2026-10-15T14:55:22+05:30
+File Path: `file:///c:/Users/manu1/OneDrive/Desktop/Women%27s%20Health%20Center/index.html`
+Total Lines: 932
+Total Bytes: 60365
+Showing lines 15 to 30
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+15: 
+16:   <!-- Top Emergency Ticker -->
+17:   <div class="top-bar-emergency">
+18:     <div class="container top-bar-flex">
+19:       <div>🚨 <strong>24×7 Maternity & Emergency Helpline:</strong> <a href="tel:+917010792745">+91 70107 92745</a> / <a href="tel:+919555334107">+91 95553 34107</a></div>
+20:       <div>🏥 <span>OPD Hours: Mon–Sat: 10:00 AM – 2:00 PM & 5:00 PM – 8:00 PM (Emergency Open 24×7)</span></div>
+21:     </div>
+22:   </div>
+23: 
+24:   <!-- Site Header (Navigation Bar matching Screenshot 1) -->
+25:   <header class="site-header">
+26:     <div class="container">
+27:       <nav class="navbar">
+28:         <a href="index.html" class="brand-logo" aria-label="Stackly Women's Health Center Home">
+29:           <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark">
+30:           <span class="logo-brand-name">STACKLY</span>
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.

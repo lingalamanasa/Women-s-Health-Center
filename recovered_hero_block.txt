@@ -1,0 +1,31 @@
+python -c "
+import json
+
+log_path = r'C:\Users\manu1\.gemini\antigravity-ide\brain\fdcbbebc-0af6-4f5f-a143-d35497c8d7dc\.system_generated\logs\transcript_full.jsonl'
+with open(log_path, 'r', encoding='utf-8', errors='ignore') as f:
+    for line_idx, line in enumerate(f):
+        if 'Top Emergency Ticker' in line:
+            print(f'Found on line {line_idx}, length {len(line)}')
+            # Let's inspect this line
+            obj = json.loads(line)
+            # Recursively find text
+            def find_text(d):
+                if isinstance(d, str):
+                    if 'Top Emergency Ticker' in d and 'SECTION 1: HERO SECTION' in d:
+                        return d
+                elif isinstance(d, dict):
+                    for v in d.values():
+                        res = find_text(v)
+                        if res: return res
+                elif isinstance(d, list):
+                    for v in d:
+                        res = find_text(v)
+                        if res: return res
+                return None
+            txt = find_text(obj)
+            if txt:
+                print('Found matching text block, length:', len(txt))
+                with open('recovered_hero_block.txt', 'w', encoding='utf-8') as out:
+                    out.write(txt)
+                break
+"

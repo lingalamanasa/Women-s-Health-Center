@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telemetry & Vitals | Stackly Women's Health Center</title>
+  <meta name="description" content="Maternal Vitals & Fetal Monitoring">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle">CARE CLOUD PORTAL</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-user.html" class=""><span>🏠</span> <span>My Health Dashboard</span></a></li>
+        <li><a href="user-vitals.html" class=" active"><span>💓</span> <span>Telemetry & Vitals</span></a></li>
+        <li><a href="user-consultations.html" class=""><span>📅</span> <span>Consultations & OPD</span></a></li>
+        <li><a href="user-scans.html" class=""><span>📡</span> <span>4D Scans & Lab Reports</span></a></li>
+        <li><a href="user-maternity.html" class=""><span>🤰</span> <span>Maternity Journey</span></a></li>
+        <li><a href="user-prescriptions.html" class=""><span>💊</span> <span>Digital Prescriptions</span></a></li>
+        <li><a href="user-billing.html" class=""><span>💳</span> <span>Insurance & Billing</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle">LM</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Lingalamanasa123</div>
+              <div class="user-profile-role">lingalamanasa123@gmail..</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#F3E8FF;color:#3B0764;padding:2px 6px;border-radius:4px;font-weight:800;">CARE</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">lingalamanasa123@gmail.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#967BB6;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;">
+            LM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Maternal Telemetry &amp; Vitals Monitor 💓</h1>
+            <p class="dash-welcome-sub">Continuous biometric tracking, fetal kick count velocity, and preeclampsia indicators.</p>
+          </div>
+          <a href="404.html" class="ui-btn-action primary">
+            <span>⚡ SYNC BLUETOOTH DEVICES</span>
+          </a>
+        </div>
+
+        <!-- Section 1: Live Maternal Biometrics Grid -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📊</span> Section 1: Live Maternal Biometrics Grid</h3>
+              <div class="ui-section-subtitle">Real-time parameters verified against pregnancy gestational norms</div>
+            </div>
+            <span class="ui-badge success"><span class="ui-pulse-dot"></span> Telemetry Active</span>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:22px;border-top:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-size:12px;font-weight:700;color:#5B446E;">ARTERIAL BLOOD PRESSURE</span>
+                <span class="ui-badge success">Optimal</span>
+              </div>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:12px 0 4px 0;">118/76</div>
+              <p style="font-size:12.5px;color:#5B446E;">Target range: 110-125 / 70-82 mmHg • Mean Arterial: 90 mmHg</p>
+            </div>
+
+            <div class="ui-card" style="padding:22px;border-top:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-size:12px;font-weight:700;color:#5B446E;">PULSE OXIMETRY (SpO2)</span>
+                <span class="ui-badge success">99% Normal</span>
+              </div>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:12px 0 4px 0;">99 %</div>
+              <p style="font-size:12.5px;color:#5B446E;">Resting pulse rate: 74 bpm • Continuous photoplethysmography</p>
+            </div>
+
+            <div class="ui-card" style="padding:22px;border-top:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-size:12px;font-weight:700;color:#5B446E;">WEIGHT GAIN VELOCITY</span>
+                <span class="ui-badge amber">+6.8 kg Total</span>
+              </div>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:12px 0 4px 0;">64.2 kg</div>
+              <p style="font-size:12.5px;color:#5B446E;">Weekly progression: 0.38 kg/wk • Optimal BMI percentile curve</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Fetal Kick Count Telemetry & Daily Movement Tracker -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>👣</span> Section 2: Fetal Kick Count Telemetry (Cardiff Count-to-Ten)</h3>
+              <div class="ui-section-subtitle">Record 10 distinct baby kicks to confirm healthy fetal neurological activity</div>
+            </div>
+            <a href="404.html" class="ui-btn-action primary" id="kickCounterBtn">
+              <span>+ RECORD KICK (Current: 10)</span>
+            </a>
+          </div>
+          <div class="ui-interactive-row" style="background:#F3E8FF;border-color:#F3E8FF;">
+            <div>
+              <h4 style="font-size:16px;font-weight:800;color:#3B0764;">Today's Kick Goal Achieved in 1 Hour 12 Minutes 🎉</h4>
+              <p style="font-size:13px;color:#3B0764;margin-top:2px;">Count started at 8:00 AM • 10th movement logged at 9:12 AM. Fetal reactivity score: Excellent.</p>
+            </div>
+            <span class="ui-badge amber">Verified Reactivity</span>
+          </div>
+          <div class="ui-grid-4" style="margin-top:16px;">
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">MONDAY</div>
+              <div style="font-size:22px;font-weight:800;color:#967BB6;margin:4px 0;">10 Kicks</div>
+              <div style="font-size:11px;color:#5B446E;">in 58 mins</div>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">TUESDAY</div>
+              <div style="font-size:22px;font-weight:800;color:#967BB6;margin:4px 0;">10 Kicks</div>
+              <div style="font-size:11px;color:#5B446E;">in 1 hr 05 mins</div>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">WEDNESDAY</div>
+              <div style="font-size:22px;font-weight:800;color:#967BB6;margin:4px 0;">10 Kicks</div>
+              <div style="font-size:11px;color:#5B446E;">in 1 hr 12 mins</div>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;background:#FAF9F5;">
+              <div style="font-size:11px;font-weight:700;color:#5B446E;">THURSDAY</div>
+              <div style="font-size:22px;font-weight:800;color:#967BB6;margin:4px 0;">In Progress</div>
+              <div style="font-size:11px;color:#5B446E;">Next slot 8:00 PM</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Gestational Diabetes & Blood Glucose Log -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🩸</span> Section 3: Gestational Diabetes (GDM) Glucose Profiler</h3>
+              <div class="ui-section-subtitle">DIPSI &amp; IADPSG guidelines benchmarked for prenatal safety</div>
+            </div>
+            <a href="404.html" class="ui-btn-action outline">+ Log Blood Sugar</a>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <span class="ui-badge success">Fasting Normal</span>
+              <div style="font-size:28px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">88 mg/dL</div>
+              <div style="font-size:12px;color:#5B446E;">Benchmark threshold: &lt; 95 mg/dL</div>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span class="ui-badge success">1-Hr Post-Prandial</span>
+              <div style="font-size:28px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">122 mg/dL</div>
+              <div style="font-size:12px;color:#5B446E;">Benchmark threshold: &lt; 140 mg/dL</div>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span class="ui-badge success">2-Hr Post-Prandial</span>
+              <div style="font-size:28px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">112 mg/dL</div>
+              <div style="font-size:12px;color:#5B446E;">Benchmark threshold: &lt; 120 mg/dL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Preeclampsia & Blood Pressure Trend Monitor -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛡️</span> Section 4: Preeclampsia &amp; Vascular Resistance Monitor</h3>
+              <div class="ui-section-subtitle">Continuous uterine artery PI correlation and urine protein dipstick tracking</div>
+            </div>
+            <a href="404.html" class="ui-badge success" style="text-decoration:none;cursor:pointer;">Risk Score: Low (0.02%)</a>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Urine Dipstick Protein Albumin Evaluation</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Result: Negative / Nil • Last verified during Week 24 OPD consultation</p>
+            </div>
+            <a href="404.html" class="ui-badge success" style="text-decoration:none;cursor:pointer;">Nil Protein</a>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Bilateral Uterine Artery Mean Pulsatility Index (PI)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">PI value: 0.88 • High velocity low resistance diastolic flow confirmed by Dr. Meera</p>
+            </div>
+            <a href="404.html" class="ui-badge success" style="text-decoration:none;cursor:pointer;">Normal Waveform</a>
+          </div>
+        </div>
+
+        <!-- Section 5: Connected Wearables & Home Health Sync -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📱</span> Section 5: Connected Wearables &amp; Home Telemetry Devices</h3>
+              <div class="ui-section-subtitle">Paired medical peripherals automatically feeding maternal clinical data</div>
+            </div>
+            <button onclick="showToast('Pairing new medical telemetry device...')" class="ui-btn-action outline">+ Pair New Device</button>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Omron Evolv BP Cuff</h4>
+                <span class="ui-badge success">Connected</span>
+              </div>
+              <p style="font-size:12.5px;color:#5B446E;margin:8px 0 12px 0;">Wireless upper arm Bluetooth blood pressure monitor.</p>
+              <button onclick="showToast('Fetching latest BP reading...')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Sync Reading Now</button>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Accu-Chek Guide GDM</h4>
+                <span class="ui-badge success">Connected</span>
+              </div>
+              <p style="font-size:12.5px;color:#5B446E;margin:8px 0 12px 0;">Instant wireless blood glucose meter and fasting sync.</p>
+              <button onclick="showToast('Syncing glucose readings...')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Sync Readings</button>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Apple Health / Fitbit</h4>
+                <span class="ui-badge success">Active</span>
+              </div>
+              <p style="font-size:12.5px;color:#5B446E;margin:8px 0 12px 0;">Daily maternal steps, sleep duration, and resting heart rate.</p>
+              <button onclick="showToast('Syncing maternal activity...')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Refresh Health Kit</button>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

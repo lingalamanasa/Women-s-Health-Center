@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Admin Cockpit | Stackly Women's Health Center</title>
+  <meta name="description" content="Executive Healthcare Administration Telemetry">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar admin-theme" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle" style="color:#967BB6;">HOSPITAL ADMIN COCKPIT</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-admin.html" class=" active"><span>📊</span> <span>Executive Overview</span></a></li>
+        <li><a href="admin-queue.html" class=""><span>🎫</span> <span>OPD Token Queue</span></a></li>
+        <li><a href="admin-surgery.html" class=""><span>🔬</span> <span>OT & Surgery Roster</span></a></li>
+        <li><a href="admin-admissions.html" class=""><span>🏥</span> <span>Bed Occupancy & Wards</span></a></li>
+        <li><a href="admin-nicu.html" class=""><span>🍼</span> <span>Level-3 NICU Telemetry</span></a></li>
+        <li><a href="admin-lab.html" class=""><span>🧪</span> <span>Diagnostic Laboratory</span></a></li>
+        <li><a href="admin-billing.html" class=""><span>💳</span> <span>Revenue & TPA Claims</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" style="background:#19042B;">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle" style="background:#967BB6;color:#111;">DS</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Dr. Shilpi Singh</div>
+              <div class="user-profile-role">Chief Clinical Director</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT ADMIN</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#24063E;color:#967BB6;padding:2px 6px;border-radius:4px;font-weight:800;">ADMIN</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">director.shilpi@thestackly.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#24063E;color:#967BB6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1.5px solid #967BB6;">
+            ADM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Hospital Executive Cockpit 📊</h1>
+            <p class="dash-welcome-sub">Salem Women's Health Center operational census, OT status, NICU telemetry, and clinical throughput.</p>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button onclick="showToast('Hospital census report exported as encrypted CSV/PDF.')" class="ui-btn-action outline">Export Census</button>
+            <a href="admin-queue.html" class="ui-btn-action primary">+ CALL NEXT OPD TOKEN</a>
+          </div>
+        </div>
+
+        <!-- Section 1: Live Operational Telemetry KPIs -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🏥</span> Section 1: Hospital Operational Telemetry &amp; Bed Census</h3>
+              <div class="ui-section-subtitle">Real-time telemetry across Salem Main Center and Outpatient Chambers</div>
+            </div>
+            <span class="ui-badge success"><span class="ui-pulse-dot"></span> All Theaters Online</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:20px;border-left:4px solid #967BB6;">
+              <span style="font-size:12px;font-weight:700;color:#5B446E;">ACTIVE INPATIENTS</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:8px 0 2px 0;">38 / 48</div>
+              <span style="font-size:12px;color:#967BB6;">79% Bed Occupancy (Healthy)</span>
+            </div>
+            <div class="ui-card" style="padding:20px;border-left:4px solid #967BB6;">
+              <span style="font-size:12px;font-weight:700;color:#5B446E;">NORMAL DELIVERY RATE</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:8px 0 2px 0;">90.4 %</div>
+              <span style="font-size:12px;color:#3B0764;">Physiological birth priority</span>
+            </div>
+            <div class="ui-card" style="padding:20px;border-left:4px solid #967BB6;">
+              <span style="font-size:12px;font-weight:700;color:#5B446E;">LEVEL-3 NICU CENSUS</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:8px 0 2px 0;">8 / 12</div>
+              <span style="font-size:12px;color:#967BB6;">4 Ventilated / 4 Phototherapy</span>
+            </div>
+            <div class="ui-card" style="padding:20px;border-left:4px solid #967BB6;">
+              <span style="font-size:12px;font-weight:700;color:#5B446E;">EMERGENCY SOS READINESS</span>
+              <div style="font-size:32px;font-weight:900;color:#1E0533;margin:8px 0 2px 0;">&lt; 2.1 Min</div>
+              <span style="font-size:12px;color:#967BB6;">Crash C-Section Response Time</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Doctor Chamber Queue Monitor -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>👩‍⚕️</span> Section 2: Specialist Chamber Live OPD Status</h3>
+              <div class="ui-section-subtitle">Real-time patient flow across 4 active consultation chambers</div>
+            </div>
+            <a href="admin-queue.html" class="ui-btn-action outline">Manage Live Queue Board →</a>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <span class="ui-badge success">Chamber 1 Active</span>
+                <span style="font-size:11px;font-weight:700;color:#967BB6;">Token #11</span>
+              </div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">Dr. Shilpi Singh</h4>
+              <p style="font-size:12px;color:#5B446E;">Obstetrics &amp; Gynaecology Surgery</p>
+              <div style="margin-top:10px;font-size:12px;color:#1E0533;">Queue: <strong>14 Patients</strong> (Est wait 18m)</div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <span class="ui-badge success">Chamber 2 Active</span>
+                <span style="font-size:11px;font-weight:700;color:#967BB6;">Token #08</span>
+              </div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">Dr. Ananya Sen</h4>
+              <p style="font-size:12px;color:#5B446E;">Reproductive Medicine &amp; Laparoscopy</p>
+              <div style="margin-top:10px;font-size:12px;color:#1E0533;">Queue: <strong>8 Patients</strong> (Est wait 12m)</div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <span class="ui-badge success">Chamber 3 Active</span>
+                <span style="font-size:11px;font-weight:700;color:#967BB6;">Token #06</span>
+              </div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">Dr. Meera Nair</h4>
+              <p style="font-size:12px;color:#5B446E;">Fetal Medicine &amp; 4D Sonology</p>
+              <div style="margin-top:10px;font-size:12px;color:#1E0533;">Queue: <strong>6 Patients</strong> (Ultrasound ongoing)</div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <div style="display:flex;justify-content:space-between;">
+                <span class="ui-badge amber">Chamber 4</span>
+                <span style="font-size:11px;font-weight:700;color:#3B0764;">Token #04</span>
+              </div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;margin:10px 0 2px 0;">Dr. Priya Sharma</h4>
+              <p style="font-size:12px;color:#5B446E;">Adolescent &amp; Hormonal Care</p>
+              <div style="margin-top:10px;font-size:12px;color:#1E0533;">Queue: <strong>5 Patients</strong> (Est wait 10m)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: OT & Emergency Laparoscopy Status -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🔬</span> Section 3: Modular Surgical Theaters Live Readiness</h3>
+              <div class="ui-section-subtitle">Laminar airflow, HEPA filter positive pressure, and autoclave batch sterility</div>
+            </div>
+            <a href="admin-surgery.html" class="ui-btn-action outline">View Complete Surgery Roster →</a>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;border-top:4px solid #3B0764;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-weight:800;color:#1E0533;">OT 1 — MAJOR OBSTETRICS</span>
+                <span class="ui-badge amber"><span class="ui-pulse-dot danger"></span> In Surgery</span>
+              </div>
+              <div style="margin:10px 0;font-size:13.5px;color:#1E0533;">
+                Procedure: <strong>Elective Lower Segment C-Section (LSCS)</strong><br>
+                Surgeon: <strong>Dr. Shilpi Singh</strong> • Anesthetist: Dr. Raman
+              </div>
+              <div style="font-size:12px;color:#5B446E;">Time Elapsed: 32 mins • Fetal Delivery Completed • Baby in NICU care</div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;border-top:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-weight:800;color:#1E0533;">OT 2 — MODULAR LAPAROSCOPY</span>
+                <span class="ui-badge success">Ready for Prep</span>
+              </div>
+              <div style="margin:10px 0;font-size:13.5px;color:#1E0533;">
+                Procedure: <strong>Keyhole Laparoscopic Cystectomy (7cm Dermoid)</strong><br>
+                Lead Surgeon: <strong>Dr. Ananya Sen</strong> • Start: 2:00 PM
+              </div>
+              <div style="font-size:12px;color:#5B446E;">Laminar Airflow: Class 100 • Sterile Batch #B-48192 Validated</div>
+            </div>
+
+            <div class="ui-card" style="padding:18px;border-top:4px solid #967BB6;">
+              <div style="display:flex;justify-content:space-between;">
+                <span style="font-weight:800;color:#1E0533;">OT 3 — MINOR DAYCARE &amp; D&amp;C</span>
+                <span class="ui-badge blue">Standby Available</span>
+              </div>
+              <div style="margin:10px 0;font-size:13.5px;color:#1E0533;">
+                Procedure: <strong>Hysteroscopic Endometrial Biopsy</strong><br>
+                Scheduled: 4:30 PM • Sterilization turnaround complete
+              </div>
+              <div style="font-size:12px;color:#5B446E;">Crash Cart Checked • O-Negative Blood Bank units reserved</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Bed Occupancy & Inpatient Ward Census -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛌</span> Section 4: Maternity Ward &amp; LDRP Suite Census</h3>
+              <div class="ui-section-subtitle">Real-time room occupancy and maternal recovery status</div>
+            </div>
+            <a href="admin-admissions.html" class="ui-btn-action outline">Manage Ward Admissions →</a>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">LDRP LUXURY SUITES</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">7 / 8 Occupied</div>
+              <span style="font-size:12px;color:#967BB6;">Suite 108 Available</span>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">POST-OP DELUXE ROOMS</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">12 / 14 Occupied</div>
+              <span style="font-size:12px;color:#967BB6;">2 Discharges at 3 PM</span>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">SEMI-PRIVATE WARDS</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">11 / 14 Occupied</div>
+              <span style="font-size:12px;color:#967BB6;">3 Beds Available</span>
+            </div>
+            <div class="ui-card" style="padding:16px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">LEVEL-3 NICU CRIBS</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">8 / 12 Occupied</div>
+              <span style="font-size:12px;color:#967BB6;">4 Incubators Standby</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: TPA Cashless Insurance & Financial Telemetry -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>💳</span> Section 5: Hospital Daily Financial Telemetry &amp; TPA Claims</h3>
+              <div class="ui-section-subtitle">Real-time collections, pre-authorization settlements, and cashless approvals</div>
+            </div>
+            <a href="admin-billing.html" class="ui-btn-action primary">Open Financial Ledger →</a>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">TODAY'S COLLECTIONS</span>
+              <div style="font-size:26px;font-weight:900;color:#967BB6;margin:6px 0;">₹ 3,42,800</div>
+              <span style="font-size:12px;color:#967BB6;">+14.2% vs yesterday</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">CASHLESS TPA APPROVED</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">₹ 2,15,000</div>
+              <span style="font-size:12px;color:#5B446E;">Star Health, HDFC, MediBuddy</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">PHARMACY POS REVENUE</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">₹ 78,400</div>
+              <span style="font-size:12px;color:#5B446E;">114 Prescriptions Filled</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">PENDING PRE-AUTH CLAIMS</span>
+              <div style="font-size:26px;font-weight:900;color:#967BB6;margin:6px 0;">4 Claims</div>
+              <span style="font-size:12px;color:#3B0764;">Avg Turnaround: 24 mins</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revenue & TPA Claims | Stackly Women's Health Center</title>
+  <meta name="description" content="Hospital Financial Operations & Cashless TPA Claims">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar admin-theme" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle" style="color:#967BB6;">HOSPITAL ADMIN COCKPIT</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-admin.html" class=""><span>📊</span> <span>Executive Overview</span></a></li>
+        <li><a href="admin-queue.html" class=""><span>🎫</span> <span>OPD Token Queue</span></a></li>
+        <li><a href="admin-surgery.html" class=""><span>🔬</span> <span>OT & Surgery Roster</span></a></li>
+        <li><a href="admin-admissions.html" class=""><span>🏥</span> <span>Bed Occupancy & Wards</span></a></li>
+        <li><a href="admin-nicu.html" class=""><span>🍼</span> <span>Level-3 NICU Telemetry</span></a></li>
+        <li><a href="admin-lab.html" class=""><span>🧪</span> <span>Diagnostic Laboratory</span></a></li>
+        <li><a href="admin-billing.html" class=" active"><span>💳</span> <span>Revenue & TPA Claims</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" style="background:#19042B;">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle" style="background:#967BB6;color:#111;">DS</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Dr. Shilpi Singh</div>
+              <div class="user-profile-role">Chief Clinical Director</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT ADMIN</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#24063E;color:#967BB6;padding:2px 6px;border-radius:4px;font-weight:800;">ADMIN</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">director.shilpi@thestackly.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#24063E;color:#967BB6;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;border:1.5px solid #967BB6;">
+            ADM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Revenue, Packages &amp; TPA Cashless Claims 💳</h1>
+            <p class="dash-welcome-sub">Hospital financial cockpit, Star Health &amp; MediBuddy cashless claims, and maternity package settlement.</p>
+          </div>
+          <button onclick="showToast('Exporting Daily Financial Audit Ledger to PDF...')" class="ui-btn-action primary">
+            <span>📥 EXPORT FINANCIAL AUDIT</span>
+          </button>
+        </div>
+
+        <!-- Section 1: Hospital Daily Financial Telemetry -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📊</span> Section 1: Hospital Financial Collections &amp; Stream Breakdown</h3>
+              <div class="ui-section-subtitle">Consolidated daily revenue across Salem Main Hospital and Outpatient Center</div>
+            </div>
+            <span class="ui-badge success">Target Achieved</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">TODAY'S TOTAL BILLING</span>
+              <div style="font-size:28px;font-weight:900;color:#967BB6;margin:6px 0;">₹ 3,42,800</div>
+              <span style="font-size:12px;color:#967BB6;">+14.2% Growth Day-on-Day</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">INPATIENT MATERNITY</span>
+              <div style="font-size:28px;font-weight:900;color:#1E0533;margin:6px 0;">₹ 1,95,000</div>
+              <span style="font-size:12px;color:#5B446E;">3 LDRP Packages Settled</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">OUTPATIENT &amp; ULTRASOUND</span>
+              <div style="font-size:28px;font-weight:900;color:#1E0533;margin:6px 0;">₹ 69,400</div>
+              <span style="font-size:12px;color:#5B446E;">4D Scans &amp; Consultations</span>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">PHARMACY DISPATCH</span>
+              <div style="font-size:28px;font-weight:900;color:#1E0533;margin:6px 0;">₹ 78,400</div>
+              <span style="font-size:12px;color:#5B446E;">114 Prescriptions Filled</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: TPA Cashless Pre-Authorization Tracker -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🛡️</span> Section 2: TPA Cashless Insurance Desk &amp; Pre-Auth Approvals</h3>
+              <div class="ui-section-subtitle">Real-time settlement with Star Health, MediBuddy, HDFC Ergo, ICICI Lombard</div>
+            </div>
+            <button onclick="showToast('Querying TPA Insurance Portal API...')" class="ui-btn-action outline">Check Pending Approvals</button>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Lingalamanasa123 — Star Health Women Care (MRN #WHC-88412)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Package: LDRP Luxury Birthing Suite • Claimed: ₹65,000 • Pre-Auth Approved: ₹50,000 • Status: Settled</p>
+            </div>
+            <span class="ui-badge success">Approved (₹50,000)</span>
+          </div>
+
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Pooja Venkat — MediBuddy / New India Assurance (MRN #WHC-89102)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Procedure: Laparoscopic Ovarian Cystectomy • Claimed: ₹55,000 • Query answered with operative report</p>
+            </div>
+            <span class="ui-badge amber">Under Query Review</span>
+          </div>
+
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Kavitha Raman — HDFC Ergo Health (MRN #WHC-90214)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Package: Normal Delivery with Epidural Analgesia • Claimed: ₹45,000 • Pre-auth letter generated</p>
+            </div>
+            <span class="ui-badge success">Approved (₹45,000)</span>
+          </div>
+        </div>
+
+        <!-- Section 3: Inpatient Final Discharge Bill Clearance Console -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🧾</span> Section 3: Inpatient Final Discharge Bill Clearance Console</h3>
+              <div class="ui-section-subtitle">Final bill auditing prior to maternal and newborn discharge</div>
+            </div>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Room 204 — Priya K. (C-Section 4-Day Stay)</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Total Bill: ₹75,000 • Insurance Paid: ₹60,000 • Patient Copay Paid: ₹15,000 • Balance: Nil</p>
+            </div>
+            <button onclick="showToast('Final No-Dues Clearance Slip generated for Room 204.')" class="ui-btn-action primary">Generate Gate Pass</button>
+          </div>
+        </div>
+
+        <!-- Section 4: Corporate & Government Empanelment Claims -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🏢</span> Section 4: Corporate Maternity Empanelment &amp; Government Schemes</h3>
+              <div class="ui-section-subtitle">Direct empanelment partnerships with IT tech parks and state maternal health benefits</div>
+            </div>
+          </div>
+          <div class="ui-grid-3">
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">TCS / Infosys Healthcare Tie-Up</h4>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0;">100% Cashless maternity cover up to ₹1,00,000 with private luxury room upgrade.</p>
+              <span class="ui-badge success">Empaneled Partner</span>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Tamil Nadu CMCHIS Maternal Cover</h4>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0;">Institutional delivery benefit scheme with zero cost neonatal intensive care.</p>
+              <span class="ui-badge blue">Government Approved</span>
+            </div>
+
+            <div class="ui-card" style="padding:18px;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">HDFC Bank Employee Care</h4>
+              <p style="font-size:12.5px;color:#5B446E;margin:6px 0;">Priority OPD chamber slots and subsidized 4D anomaly scans.</p>
+              <span class="ui-badge success">Active Scheme</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Pharmacy & Consumables Revenue Stream -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>💊</span> Section 5: Pharmacy POS &amp; Surgical Consumables Audit</h3>
+              <div class="ui-section-subtitle">Daily stock reconciliation and emergency obstetric medicine reserves</div>
+            </div>
+            <span class="ui-badge success">Audit Reconciled</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">PHARMACY TRANSACTIONS</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">114 Bills</div>
+              <span style="font-size:12px;color:#967BB6;">₹78,400 Total</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">OXYTOCIN &amp; ERGOMETRINE</span>
+              <div style="font-size:26px;font-weight:900;color:#967BB6;margin:6px 0;">100% Stocked</div>
+              <span style="font-size:12px;color:#5B446E;">Cold-chain 2°C-8°C verified</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">EPIDURAL KITS</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">42 Kits</div>
+              <span style="font-size:12px;color:#967BB6;">Sterile batch valid</span>
+            </div>
+            <div class="ui-card" style="padding:16px;text-align:center;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">SURGICAL GAUZE &amp; SUTURES</span>
+              <div style="font-size:26px;font-weight:900;color:#1E0533;margin:6px 0;">Full Supply</div>
+              <span style="font-size:12px;color:#967BB6;">Vicryl &amp; Monocryl ready</span>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

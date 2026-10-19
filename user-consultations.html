@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultations & OPD | Stackly Women's Health Center</title>
+  <meta name="description" content="OPD Token Queue & Doctor Appointments">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=10">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+</head>
+<body style="background:#FAF9F5;">
+
+  <div class="dashboard-layout">
+    <aside class="dash-sidebar" id="dashSidebar">
+      <div class="sidebar-header">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <a href="index.html" class="brand-logo">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:32px;width:auto;">
+            <span class="sidebar-brand-name">STACKLY</span>
+          </a>
+          <button id="closeDashSidebar" style="display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;">✕</button>
+        </div>
+        <div class="sidebar-subtitle">CARE CLOUD PORTAL</div>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="dashboard-user.html" class=""><span>🏠</span> <span>My Health Dashboard</span></a></li>
+        <li><a href="user-vitals.html" class=""><span>💓</span> <span>Telemetry & Vitals</span></a></li>
+        <li><a href="user-consultations.html" class=" active"><span>📅</span> <span>Consultations & OPD</span></a></li>
+        <li><a href="user-scans.html" class=""><span>📡</span> <span>4D Scans & Lab Reports</span></a></li>
+        <li><a href="user-maternity.html" class=""><span>🤰</span> <span>Maternity Journey</span></a></li>
+        <li><a href="user-prescriptions.html" class=""><span>💊</span> <span>Digital Prescriptions</span></a></li>
+        <li><a href="user-billing.html" class=""><span>💳</span> <span>Insurance & Billing</span></a></li>
+        <li><a href="index.html" class=""><span>🌐</span> <span>Hospital Public Site</span></a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge">
+          <div class="user-profile-info">
+            <div class="user-avatar-circle">LM</div>
+            <div class="user-profile-text">
+              <div class="user-profile-name">Lingalamanasa123</div>
+              <div class="user-profile-role">lingalamanasa123@gmail..</div>
+            </div>
+          </div>
+          <button onclick="logoutUser()" class="btn-sidebar-logout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            <span>LOGOUT</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <header class="dash-top-header">
+        <div style="display:flex;align-items:center;gap:14px;">
+
+          <div class="mobile-dash-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" class="logo-s-mark" style="height:26px;width:auto;">
+            <span style="font-size:18px;font-weight:900;color:#1E0533;">STACKLY</span>
+            <span style="font-size:9px;background:#F3E8FF;color:#3B0764;padding:2px 6px;border-radius:4px;font-weight:800;">CARE</span>
+          </div>
+        </div>
+
+        <div class="dash-header-user">
+          <span class="dash-header-email hide-mobile">lingalamanasa123@gmail.com</span>
+          <div style="width:36px;height:36px;border-radius:50%;background:#967BB6;color:#111;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;">
+            LM
+          </div>
+        </div>
+      </header>
+
+      <div class="dash-body">
+
+        <div class="dash-welcome-row">
+          <div>
+            <h1 class="dash-welcome-title">Consultations &amp; OPD Chambers 📅</h1>
+            <p class="dash-welcome-sub">Schedule in-person hospital consultations, tele-health sessions, and track OPD token wait times.</p>
+          </div>
+          <button onclick="showToast('Opening Rapid Appointment Scheduler...')" class="ui-btn-action primary">
+            <span>+ BOOK NEW CONSULTATION</span>
+          </button>
+        </div>
+
+        <!-- Section 1: Active Appointment & Real-Time Chamber Queue Status -->
+        <div class="ui-section-card" style="border:1.5px solid #967BB6;background:#FAF9F5;">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>🎫</span> Section 1: Active Appointment &amp; Real-Time Chamber Queue</h3>
+              <div class="ui-section-subtitle">Live hospital queue telemetry at Stackly Salem Center</div>
+            </div>
+            <span class="ui-badge amber"><span class="ui-pulse-dot amber"></span> Live Queue Active</span>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">YOUR APPOINTMENT TOKEN</span>
+              <div style="font-size:36px;font-weight:900;color:#3B0764;margin:8px 0 4px 0;">TOKEN #14</div>
+              <p style="font-size:12px;color:#5B446E;">OPD Chamber 1 • Dr. Shilpi Singh</p>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">CURRENTLY SERVING TOKEN</span>
+              <div style="font-size:36px;font-weight:900;color:#967BB6;margin:8px 0 4px 0;">TOKEN #11</div>
+              <p style="font-size:12px;color:#5B446E;">Consultation in progress (Chamber 1)</p>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">ESTIMATED WAIT TIME</span>
+              <div style="font-size:36px;font-weight:900;color:#1E0533;margin:8px 0 4px 0;">~18 Mins</div>
+              <p style="font-size:12px;color:#5B446E;">2 Patients ahead of your turn</p>
+            </div>
+            <div class="ui-card" style="padding:18px;">
+              <span style="font-size:11px;font-weight:700;color:#5B446E;">CONSULTATION MODE</span>
+              <div style="font-size:24px;font-weight:800;color:#1E0533;margin:12px 0 4px 0;">In-Person OPD</div>
+              <button onclick="showToast('Directions & digital token sent to WhatsApp.')" class="ui-btn-action outline" style="width:100%;justify-content:center;margin-top:6px;">View Digital Token</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Book New Specialist Appointment -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>👩‍⚕️</span> Section 2: Choose Specialist &amp; Book In-Person / Tele-Consult</h3>
+              <div class="ui-section-subtitle">Board-certified senior clinical consultants at Women's Health Center</div>
+            </div>
+          </div>
+          <div class="ui-grid-4">
+            <div class="ui-card" style="padding:18px;text-align:center;">
+              <img src="assets/img/opd-dr-shilpi.webp" alt="Dr. Shilpi" style="width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px auto;border:2px solid #967BB6;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Dr. Shilpi Singh</h4>
+              <p style="font-size:11.5px;color:#3B0764;font-weight:700;">Director Obstetrics &amp; Surgery</p>
+              <div style="font-size:12px;color:#5B446E;margin:8px 0 12px 0;">OPD: Mon–Sat (10am–2pm)</div>
+              <button onclick="showToast('Selected Dr. Shilpi Singh. Choose slot below.')" class="ui-btn-action primary" style="width:100%;justify-content:center;">Select Doctor</button>
+            </div>
+
+            <div class="ui-card" style="padding:18px;text-align:center;">
+              <img src="assets/img/opd-dr-ananya.webp" alt="Dr. Ananya" style="width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px auto;border:2px solid #DDD6FE;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Dr. Ananya Sen</h4>
+              <p style="font-size:11.5px;color:#3B0764;font-weight:700;">Reproductive &amp; Laparoscopy</p>
+              <div style="font-size:12px;color:#5B446E;margin:8px 0 12px 0;">OPD: Mon–Fri (2pm–6pm)</div>
+              <button onclick="showToast('Selected Dr. Ananya Sen. Choose slot below.')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Select Doctor</button>
+            </div>
+
+            <div class="ui-card" style="padding:18px;text-align:center;">
+              <img src="assets/img/opd-dr-meera.webp" alt="Dr. Meera" style="width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px auto;border:2px solid #DDD6FE;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Dr. Meera Nair</h4>
+              <p style="font-size:11.5px;color:#3B0764;font-weight:700;">Fetal Medicine &amp; Ultrasound</p>
+              <div style="font-size:12px;color:#5B446E;margin:8px 0 12px 0;">OPD: Tue, Thu, Sat (9am–1pm)</div>
+              <button onclick="showToast('Selected Dr. Meera Nair. Choose slot below.')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Select Doctor</button>
+            </div>
+
+            <div class="ui-card" style="padding:18px;text-align:center;">
+              <img src="assets/img/opd-dr-priya.webp" alt="Dr. Priya" style="width:84px;height:84px;border-radius:50%;object-fit:cover;margin:0 auto 12px auto;border:2px solid #DDD6FE;">
+              <h4 style="font-size:15px;font-weight:800;color:#1E0533;">Dr. Priya Sharma</h4>
+              <p style="font-size:11.5px;color:#3B0764;font-weight:700;">Adolescent &amp; Hormonal Care</p>
+              <div style="font-size:12px;color:#5B446E;margin:8px 0 12px 0;">OPD: Mon, Wed, Fri (4pm–8pm)</div>
+              <button onclick="showToast('Selected Dr. Priya Sharma. Choose slot below.')" class="ui-btn-action outline" style="width:100%;justify-content:center;">Select Doctor</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Virtual Tele-Consultation Digital Lounge -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>💻</span> Section 3: Tele-Consultation Digital Lounge (HD Encrypted Video)</h3>
+              <div class="ui-section-subtitle">Secure HIPAA &amp; Telemedicine Practice Guidelines compliant consult room</div>
+            </div>
+            <button onclick="showToast('Testing camera, microphone, and internet bandwidth... All Systems Optimal!')" class="ui-btn-action outline">Check Audio/Video</button>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Next Scheduled Tele-Visit: Antenatal Nutrition &amp; Fetal Growth</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">With Dr. Shilpi Singh • Friday at 4:30 PM (25 Min slot) • Links activates 10 mins prior</p>
+            </div>
+            <button onclick="showToast('Entering Secure Virtual Waiting Room...')" class="ui-btn-action primary">Join Video Lounge</button>
+          </div>
+        </div>
+
+        <!-- Section 4: Past Consultation Records & Clinical Notes -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>📁</span> Section 4: Past Consultation Summaries &amp; Doctor Remarks</h3>
+              <div class="ui-section-subtitle">Complete chronological record of physical checkups and clinical remarks</div>
+            </div>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Week 20 Review: Anatomy Scan &amp; Fundal Height Evaluation</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Consultant: Dr. Shilpi Singh • Remarks: Fetal heartbeat 144 bpm, fundal height matching dates, iron dosage adjusted.</p>
+            </div>
+            <button onclick="showToast('Downloading Clinical OPD Summary #RX-88412...')" class="ui-btn-action outline">Download Note PDF</button>
+          </div>
+          <div class="ui-interactive-row">
+            <div>
+              <h4 style="font-size:15px;font-weight:700;color:#24063E;">Week 16 Review: Quadruple Marker &amp; Cervical Length Assessment</h4>
+              <p style="font-size:13px;color:#5B446E;margin-top:2px;">Consultant: Dr. Meera Nair • Remarks: Cervix internal os closed (3.8 cm length), normal amniotic fluid index (AFI: 14 cm).</p>
+            </div>
+            <button onclick="showToast('Downloading Clinical OPD Summary #RX-81902...')" class="ui-btn-action outline">Download Note PDF</button>
+          </div>
+        </div>
+
+        <!-- Section 5: Direct Doctor Messaging & Nurse Triage Hotline -->
+        <div class="ui-section-card">
+          <div class="ui-section-title-wrap">
+            <div class="ui-section-title-group">
+              <h3><span>💬</span> Section 5: Secure Direct Doctor Messaging &amp; Follow-Up Queries</h3>
+              <div class="ui-section-subtitle">Ask questions directly to your care team within 7 days of your consultation</div>
+            </div>
+          </div>
+          <div style="background:#FAF9F5;border:1px solid #DDD6FE;border-radius:14px;padding:20px;">
+            <div style="margin-bottom:14px;">
+              <label style="font-size:13px;font-weight:700;color:#1E0533;display:block;margin-bottom:6px;">Type your non-emergency clinical query:</label>
+              <textarea placeholder="e.g., Hello Dr. Shilpi, can I take the calcium supplement with breakfast instead of lunch?" style="width:100%;height:80px;border-radius:10px;border:1.5px solid #DDD6FE;padding:12px;font-family:inherit;font-size:13.5px;"></textarea>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:#5B446E;">Average response time: Within 2 hours during OPD hours (Mon–Sat)</span>
+              <button onclick="showToast('Your question has been securely transmitted to Dr. Shilpi Singh.')" class="ui-btn-action primary">Send Question to Doctor</button>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

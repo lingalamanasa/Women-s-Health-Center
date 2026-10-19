@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Stackly Women's Health Center</title>
+  <meta name="description" content="The page or resource you are looking for could not be found. Return to Stackly Women's Health Center.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/webp" href="assets/img/logo.webp">
+
+  <style>
+    /* Strict 3-Color Palette: Ivory, Lavender, Deep Purple */
+    :root {
+      --color-ivory: #FFFFF0;
+      --color-ivory-soft: #FAF9F5;
+      --color-lavender: #967BB6;
+      --color-lavender-glow: #C4B5FD;
+      --color-lavender-vibrant: #8B5CF6;
+      --color-lavender-muted: #BDB0D0;
+      --color-lavender-border: rgba(221, 214, 254, 0.22);
+      --color-deep-purple: #3B0764;
+      --color-deep-purple-card: #150524;
+      --color-deep-purple-night: #0B0214;
+      --color-deep-purple-text: #1E0533;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--color-deep-purple-night);
+      background-image: 
+        radial-gradient(circle at 50% 40%, rgba(139, 92, 246, 0.16) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(59, 7, 100, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(36, 6, 62, 0.4) 0%, transparent 50%);
+      color: var(--color-ivory);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Top Brand Nav */
+    .notfound-nav {
+      position: absolute;
+      top: 24px;
+      left: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      z-index: 10;
+    }
+
+    .notfound-nav img {
+      height: 32px;
+      width: auto;
+    }
+
+    .notfound-brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--color-ivory);
+    }
+
+    /* Central 404 Floating Card */
+    .notfound-card {
+      background: var(--color-deep-purple-card);
+      border: 1px solid var(--color-lavender-border);
+      border-radius: 32px;
+      padding: 60px 48px 52px 48px;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 
+        0 24px 64px rgba(0, 0, 0, 0.75),
+        0 0 40px rgba(59, 7, 100, 0.4),
+        inset 0 1px 1px rgba(255, 255, 240, 0.1);
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      animation: floatIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Glowing & Floating 404 Number */
+    .notfound-number {
+      font-size: 116px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: linear-gradient(180deg, #FFFFFF 0%, #E9D5FF 30%, #A855F7 70%, #6B21A8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
+      animation: float404 4s ease-in-out infinite alternate, glowPulse 3s ease-in-out infinite alternate;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+      cursor: default;
+    }
+
+    .notfound-number:hover {
+      transform: translateY(-12px) scale(1.05);
+      filter: drop-shadow(0 0 45px rgba(192, 132, 252, 0.95)) drop-shadow(0 0 90px rgba(168, 85, 247, 0.8));
+    }
+
+    @keyframes float404 {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes glowPulse {
+      0% {
+        filter: drop-shadow(0 0 24px rgba(139, 92, 246, 0.7)) drop-shadow(0 0 50px rgba(196, 181, 253, 0.4));
+      }
+      100% {
+        filter: drop-shadow(0 0 40px rgba(167, 139, 250, 0.95)) drop-shadow(0 0 85px rgba(196, 181, 253, 0.7));
+      }
+    }
+
+    /* Pill Badge: TRAIL OFF ROUTE with pulse & compass animation */
+    .notfound-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 20px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(196, 181, 253, 0.3);
+      color: #DDD6FE;
+      margin-bottom: 22px;
+      animation: pulseBadge 3s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+
+    .notfound-badge:hover {
+      background: rgba(139, 92, 246, 0.22);
+      border-color: rgba(196, 181, 253, 0.6);
+      transform: scale(1.03);
+    }
+
+    .notfound-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: #C4B5FD;
+      animation: swayCompass 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% {
+        box-shadow: 0 0 16px rgba(139, 92, 246, 0.2), inset 0 0 8px rgba(196, 181, 253, 0.08);
+        border-color: rgba(196, 181, 253, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 26px rgba(139, 92, 246, 0.45), inset 0 0 14px rgba(196, 181, 253, 0.22);
+        border-color: rgba(196, 181, 253, 0.65);
+      }
+    }
+
+    @keyframes swayCompass {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(24deg); }
+      75% { transform: rotate(-24deg); }
+    }
+
+    /* Title: Page Not Found with Shimmer Gradient */
+    .notfound-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+      line-height: 1.2;
+      background: linear-gradient(90deg, #FFFFFF 0%, #E9D5FF 22%, #C084FC 45%, #FFFFFF 68%, #E9D5FF 88%, #FFFFFF 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 4.5s linear infinite;
+    }
+
+    @keyframes textShimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    /* Typewriter Animated Status Line */
+    .notfound-typewriter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 26px;
+      padding: 4px 14px;
+      border-radius: 8px;
+      background: rgba(59, 7, 100, 0.35);
+      border: 1px solid rgba(221, 214, 254, 0.15);
+      font-size: 13px;
+      font-weight: 600;
+      color: #DDD6FE;
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
+    }
+
+    .typewriter-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #A855F7;
+      box-shadow: 0 0 10px #C084FC;
+      animation: dotPulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.35); opacity: 1; }
+    }
+
+    .typewriter-cursor {
+      color: #C084FC;
+      font-weight: 400;
+      animation: cursorBlink 0.9s steps(2, start) infinite;
+    }
+
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Paragraph with Subtle Luminous Fade */
+    .notfound-desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--color-lavender-muted);
+      max-width: 440px;
+      margin: 0 auto 32px auto;
+      font-weight: 500;
+      animation: descReveal 1s ease-out both;
+    }
+
+    @keyframes descReveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Actions Row */
+    .notfound-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Return to Home Button (Primary Vibrant) */
+    .btn-return-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      background: linear-gradient(135deg, #C4B5FD 0%, #8B5CF6 100%);
+      color: #1E0533;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
+      transition: all 0.25s ease;
+    }
+
+    .btn-return-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(139, 92, 246, 0.65);
+      background: linear-gradient(135deg, #DDD6FE 0%, #967BB6 100%);
+    }
+
+    .btn-return-home svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    /* Go Back Button (Secondary Outline) */
+    .btn-go-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 9999px;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-ivory);
+      border: 1px solid var(--color-lavender-border);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-go-back:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(196, 181, 253, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-go-back svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+    }
+
+    /* Footer Meta */
+    .notfound-footer {
+      margin-top: 36px;
+      font-size: 12px;
+      color: rgba(189, 176, 208, 0.6);
+      text-align: center;
+    }
+
+    .notfound-footer a {
+      color: #C4B5FD;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .notfound-footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .notfound-nav {
+        position: static;
+        margin-bottom: 24px;
+      }
+      .notfound-card {
+        padding: 42px 24px 36px 24px;
+        border-radius: 24px;
+      }
+      .notfound-number {
+        font-size: 88px;
+      }
+      .notfound-title {
+        font-size: 28px;
+      }
+      .notfound-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn-return-home,
+      .btn-go-back {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- 404 Floating Card Matching Screenshot -->
+  <main class="notfound-card">
+    <!-- Glowing 404 Number -->
+    <div class="notfound-number">404</div>
+
+    <!-- Capsule Badge: TRAIL OFF ROUTE -->
+    <div class="notfound-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+      </svg>
+      <span>TRAIL OFF ROUTE</span>
+    </div>
+
+    <!-- Title with Luminous Shimmer Animation -->
+    <h1 class="notfound-title">Page Not Found</h1>
+
+    <!-- Interactive Typewriter Status Line -->
+    <div class="notfound-typewriter" role="status" aria-live="polite">
+      <span class="typewriter-dot"></span>
+      <span style="opacity:0.75;font-weight:700;">Status:</span>
+      <span class="typewriter-text" id="typewriterText">Checking route...</span>
+      <span class="typewriter-cursor">▎</span>
+    </div>
+
+    <!-- Description -->
+    <p class="notfound-desc">
+      The expedition or resource you are looking for has been relocated, archived, or is currently unavailable.
+    </p>
+
+    <!-- Two Action Buttons (Return to Home & Go Back) -->
+    <div class="notfound-actions">
+      <!-- Return to Home -->
+      <a href="index.html" class="btn-return-home">
+        <svg viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+        <span>Return to Home</span>
+      </a>
+
+      <!-- Go Back -->
+      <button onclick="handleGoBack()" class="btn-go-back" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Go Back</span>
+      </button>
+    </div>
+  </main>
+
+  <script>
+    function handleGoBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // Dynamic typewriter text animation
+    (function initTypewriter() {
+      const phrases = [
+        "Clinical route lost in cyberspace...",
+        "Resource archived or relocated.",
+        "Diagnostic telemetry signal missing.",
+        "Redirecting you back to safe harbor..."
+      ];
+      let phraseIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+      const el = document.getElementById('typewriterText');
+      if (!el) return;
+
+      function typeLoop() {
+        const current = phrases[phraseIdx];
+        if (isDeleting) {
+          el.textContent = current.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          el.textContent = current.substring(0, charIdx + 1);
+          charIdx++;
+        }
+
+        let speed = isDeleting ? 30 : 65;
+
+        if (!isDeleting && charIdx === current.length) {
+          speed = 2200; // pause at end of sentence
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          speed = 400; // pause before next sentence
+        }
+
+        setTimeout(typeLoop, speed);
+      }
+
+      typeLoop();
+    })();
+  </script>
+
+</body>
+</html>
