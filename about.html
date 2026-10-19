@@ -150,9 +150,24 @@
     </div>
   </div>
 
-
-
-  <!-- Site Header (Navigation Bar matching Screenshot 1) -->
+  <script>
+    (function() {
+      function dismiss() {
+        var p = document.getElementById('stacklyPreloader');
+        if (p) {
+          p.classList.add('loaded');
+          document.body.classList.remove('preloader-active');
+          setTimeout(function() { if (p && p.parentNode) p.parentNode.removeChild(p); }, 500);
+        }
+      }
+      if (document.readyState === 'complete') {
+        setTimeout(dismiss, 450);
+      } else {
+        window.addEventListener('load', function() { setTimeout(dismiss, 350); });
+        setTimeout(dismiss, 1000);
+      }
+    })();
+  </script>
   <header class="site-header">
     <div class="container">
       <nav class="navbar">

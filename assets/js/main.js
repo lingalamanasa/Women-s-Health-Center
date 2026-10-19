@@ -1,0 +1,476 @@
+/* ==========================================================================
+   STACKLY WOMEN'S HEALTH CENTER - JAVASCRIPT CONTROLLER
+   ========================================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
+  initMobileNav();
+  initHeroCarousel();
+  initStorySlider();
+  initFaqAccordion();
+  initForms();
+  initAuthLogic();
+  initDashboardFeatures();
+});
+
+// Also trigger immediate setup if document already running
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  initPreloader();
+  initHeroCarousel();
+}
+
+/* --------------------------------------------------------------------------
+   Hero Carousel Auto-Crossfade & Dynamic Scrolling Background
+   -------------------------------------------------------------------------- */
+let heroCarouselInitialized = false;
+function initHeroCarousel() {
+  if (heroCarouselInitialized) return;
+  const heroWraps = document.querySelectorAll('.hero-image_wrap');
+  if (!heroWraps.length) return;
+  heroCarouselInitialized = true;
+
+  heroWraps.forEach(wrap => {
+    const heroImgs = wrap.querySelectorAll('.hero-carousel-img');
+    if (heroImgs.length <= 1) return;
+
+    let currentIdx = 0;
+    if (!wrap.querySelector('.hero-carousel-img.is-active')) {
+      heroImgs[0].classList.add('is-active');
+    }
+
+    setInterval(() => {
+      heroImgs[currentIdx].classList.remove('is-active');
+      currentIdx = (currentIdx + 1) % heroImgs.length;
+      heroImgs[currentIdx].classList.add('is-active');
+    }, 4200);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Our Story Interactive Slider with Real-time Progress Bars
+   -------------------------------------------------------------------------- */
+function initStorySlider() {
+  const track = document.getElementById('storySliderTrack');
+  const cards = document.querySelectorAll('.story-slide-card');
+  const prevBtn = document.getElementById('storyPrevBtn');
+  const nextBtn = document.getElementById('storyNextBtn');
+
+  if (!cards.length) return;
+
+  let activeIndex = 0;
+  let autoTimer = null;
+
+  function updateActiveCard(index) {
+    activeIndex = (index + cards.length) % cards.length;
+    cards.forEach((c, i) => {
+      if (i === activeIndex) {
+        c.classList.add('active');
+        // fill progress up to this index
+        const blocks = c.querySelectorAll('.our-story_item-progress_block');
+        blocks.forEach((b, bi) => {
+          if (bi <= i) {
+            b.classList.add('is-progress');
+          } else {
+            b.classList.remove('is-progress');
+          }
+        });
+      } else {
+        c.classList.remove('active');
+      }
+    });
+
+    if (track) {
+      const cardWidth = cards[0].offsetWidth + 20;
+      track.scrollTo({
+        left: activeIndex * cardWidth,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  function startStoryTimer() {
+    stopStoryTimer();
+    autoTimer = setInterval(() => {
+      updateActiveCard(activeIndex + 1);
+    }, 4500);
+  }
+
+  function stopStoryTimer() {
+    if (autoTimer) clearInterval(autoTimer);
+  }
+
+  cards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      updateActiveCard(idx);
+      startStoryTimer();
+    });
+  });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      updateActiveCard(activeIndex - 1);
+      startStoryTimer();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      updateActiveCard(activeIndex + 1);
+      startStoryTimer();
+    });
+  }
+
+  const sliderWrap = document.querySelector('.story-slider-wrap');
+  if (sliderWrap) {
+    sliderWrap.addEventListener('mouseenter', stopStoryTimer);
+    sliderWrap.addEventListener('mouseleave', startStoryTimer);
+  }
+
+  updateActiveCard(0);
+  startStoryTimer();
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Navigation Drawer
+   -------------------------------------------------------------------------- */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobileNavToggle');
+  const drawer = document.getElementById('mobileDrawer');
+  const closeBtn = document.getElementById('closeMobileDrawer');
+
+  if (toggleBtn && drawer) {
+    toggleBtn.addEventListener('click', () => {
+      drawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  if (closeBtn && drawer) {
+    closeBtn.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+
+  // Close when clicking outside content
+  if (drawer) {
+    drawer.addEventListener('click', (e) => {
+      if (e.target === drawer) {
+        drawer.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+}
+
+/* --------------------------------------------------------------------------
+   FAQ Accordions
+   -------------------------------------------------------------------------- */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    if (question) {
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        // Close others
+        faqItems.forEach(other => other.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Forms & Appointments
+   -------------------------------------------------------------------------- */
+function initForms() {
+  const leadForms = document.querySelectorAll('.lead-form, .appointment-form');
+  leadForms.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn ? submitBtn.innerText : 'Submit';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Confirming Booking...';
+      }
+
+      setTimeout(() => {
+        showToast('✓ Appointment Request Received! Our medical coordinator will call you within 10 minutes.');
+        form.reset();
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalText;
+        }
+      }, 900);
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Authentication: Role Switcher & Sign In / Sign Up
+   -------------------------------------------------------------------------- */
+function initAuthLogic() {
+  const roleButtons = document.querySelectorAll('.role-toggle-btn');
+  let currentRole = 'user'; // default
+
+  roleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roleButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRole = btn.dataset.role || 'user';
+      
+      const roleNotice = document.getElementById('roleNotice');
+      if (roleNotice) {
+        if (currentRole === 'admin') {
+          roleNotice.innerText = '🛡️ Signing in to Hospital Administrator & Clinical Cockpit';
+        } else {
+          roleNotice.innerText = '👤 Signing in to Patient Care Cloud & Telemetry Portal';
+        }
+      }
+    });
+  });
+
+  // Login Form
+  const loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('loginEmail');
+      const email = emailInput ? emailInput.value : 'patient@thestackly.com';
+      
+      // Save session
+      localStorage.setItem('stackly_user_email', email);
+      localStorage.setItem('stackly_user_role', currentRole);
+
+      showToast(`Welcome! Signing you in as ${currentRole.toUpperCase()}...`);
+
+      setTimeout(() => {
+        if (currentRole === 'admin') {
+          window.location.href = 'dashboard-admin.html';
+        } else {
+          window.location.href = 'dashboard-user.html';
+        }
+      }, 700);
+    });
+  }
+
+  // Signup Form
+  const signupForm = document.getElementById('signupForm');
+  if (signupForm) {
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('signupEmail');
+      const email = emailInput ? emailInput.value : 'patient@thestackly.com';
+
+      localStorage.setItem('stackly_user_email', email);
+      localStorage.setItem('stackly_user_role', currentRole);
+
+      showToast(`Account Created Successfully! Redirecting to ${currentRole.toUpperCase()} Dashboard...`);
+
+      setTimeout(() => {
+        if (currentRole === 'admin') {
+          window.location.href = 'dashboard-admin.html';
+        } else {
+          window.location.href = 'dashboard-user.html';
+        }
+      }, 700);
+    });
+  }
+}
+
+// Quick Autofill for Demo
+window.fillDemoCredentials = function(role) {
+  const userToggle = document.getElementById('toggleUser');
+  const adminToggle = document.getElementById('toggleAdmin');
+  const emailInput = document.getElementById('loginEmail');
+  const passInput = document.getElementById('loginPassword');
+
+  if (role === 'admin') {
+    if (adminToggle) adminToggle.click();
+    if (emailInput) emailInput.value = 'director.shilpi@thestackly.com';
+    if (passInput) passInput.value = 'AdminPass2026!';
+  } else {
+    if (userToggle) userToggle.click();
+    if (emailInput) emailInput.value = 'lingalamanasa123@gmail.com';
+    if (passInput) passInput.value = 'PatientPass2026!';
+  }
+};
+
+/* --------------------------------------------------------------------------
+   Dashboard Features (User & Admin)
+   -------------------------------------------------------------------------- */
+function initDashboardFeatures() {
+  // Mobile Dashboard Sidebar Toggle
+  const dashMenuBtn = document.getElementById('dashMenuToggle');
+  const dashSidebar = document.querySelector('.dash-sidebar');
+  const closeSidebarBtn = document.getElementById('closeDashSidebar');
+
+  if (dashMenuBtn && dashSidebar) {
+    dashMenuBtn.addEventListener('click', () => {
+      dashSidebar.classList.toggle('mobile-open');
+    });
+  }
+
+  if (closeSidebarBtn && dashSidebar) {
+    closeSidebarBtn.addEventListener('click', () => {
+      dashSidebar.classList.remove('mobile-open');
+    });
+  }
+
+  // Pill Reminder Checkbox simulator
+  const pillCheckboxes = document.querySelectorAll('.pill-check');
+  pillCheckboxes.forEach(box => {
+    box.addEventListener('change', (e) => {
+      const parent = box.closest('.pill-item');
+      if (box.checked) {
+        if (parent) parent.style.opacity = '0.5';
+        showToast('✓ Dose marked as taken. Health timeline updated!');
+      } else {
+        if (parent) parent.style.opacity = '1';
+      }
+    });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Download Simulation / Booking Modals
+   -------------------------------------------------------------------------- */
+window.simulateDownloadReport = function(reportName) {
+  showToast(`📥 Preparing encrypted download: ${reportName}.pdf...`);
+  setTimeout(() => {
+    showToast(`✓ Download Complete: ${reportName}.pdf (Verified 256-Bit SSL)`);
+  }, 1200);
+};
+
+window.quickBookAction = function() {
+  const modal = document.getElementById('bookingModal');
+  if (modal) {
+    modal.style.display = 'flex';
+  } else {
+    showToast('📅 Redirecting to Senior Doctor Scheduling Desk...');
+    setTimeout(() => {
+      window.location.href = 'contact.html#book';
+    }, 500);
+  }
+};
+
+window.closeBookingModal = function() {
+  const modal = document.getElementById('bookingModal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.logoutUser = function() {
+  localStorage.removeItem('stackly_user_email');
+  localStorage.removeItem('stackly_user_role');
+  showToast('Logging out from Stackly Care Cloud...');
+  setTimeout(() => {
+    window.location.href = 'login.html';
+  }, 600);
+};
+
+/* --------------------------------------------------------------------------
+   Toast Notification System
+   -------------------------------------------------------------------------- */
+function showToast(message) {
+  let toast = document.getElementById('stacklyToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'stacklyToast';
+    toast.style.position = 'fixed';
+    toast.style.bottom = '30px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.background = '#111827';
+    toast.style.color = '#ffffff';
+    toast.style.padding = '14px 24px';
+    toast.style.borderRadius = '9999px';
+    toast.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+    toast.style.fontSize = '14px';
+    toast.style.fontWeight = '600';
+    toast.style.zIndex = '100000';
+    toast.style.transition = 'all 0.3s ease';
+    toast.style.display = 'flex';
+    toast.style.alignItems = 'center';
+    toast.style.gap = '10px';
+    toast.style.border = '1px solid #f59e0b';
+    document.body.appendChild(toast);
+  }
+
+  toast.innerText = message;
+  toast.style.opacity = '1';
+  toast.style.pointerEvents = 'auto';
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.pointerEvents = 'none';
+  }, 3500);
+}
+
+/* --------------------------------------------------------------------------
+   Stackly Luxury Preloader Controller
+   -------------------------------------------------------------------------- */
+let preloaderInitialized = false;
+function initPreloader() {
+  if (preloaderInitialized) return;
+  const preloader = document.getElementById('stacklyPreloader');
+  if (!preloader) return;
+  preloaderInitialized = true;
+
+  document.body.classList.add('preloader-active');
+
+  const bar = document.getElementById('preloaderProgressBar');
+  const status = document.getElementById('preloaderStatusText');
+
+  const statusMessages = [
+    'Initializing Care Cloud...',
+    'Loading Clinical Profiles...',
+    'Synchronizing Health Telemetry...',
+    'Connecting 256-Bit SSL Gateway...',
+    'Ready.'
+  ];
+
+  let progress = 18;
+  let msgIndex = 0;
+  if (bar) bar.style.width = '18%';
+
+  const progressTimer = setInterval(() => {
+    progress += Math.floor(Math.random() * 22) + 12;
+    if (progress > 88) progress = 88;
+    if (bar) bar.style.width = `${progress}%`;
+
+    msgIndex = Math.min(msgIndex + 1, statusMessages.length - 2);
+    if (status && statusMessages[msgIndex]) {
+      status.innerText = statusMessages[msgIndex];
+    }
+  }, 120);
+
+  const completeAndDismiss = () => {
+    clearInterval(progressTimer);
+    if (bar) bar.style.width = '100%';
+    if (status) status.innerText = '✓ Connected';
+
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      document.body.classList.remove('preloader-active');
+      setTimeout(() => {
+        if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+      }, 600);
+    }, 320);
+  };
+
+  // Dismiss either when window fully loads or after brief minimum show (650ms)
+  if (document.readyState === 'complete') {
+    setTimeout(completeAndDismiss, 650);
+  } else {
+    window.addEventListener('load', () => {
+      setTimeout(completeAndDismiss, 600);
+    });
+    // Safety fallback
+    setTimeout(completeAndDismiss, 1800);
+  }
+}
+
