@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initHeroCarousel();
   initStorySlider();
+  initWobbleCards();
   initFaqAccordion();
   initForms();
   initAuthLogic();
@@ -16,7 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Also trigger immediate setup if document already running
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
   initPreloader();
+  initMobileNav();
   initHeroCarousel();
+  initWobbleCards();
   initDashboardFeatures();
 }
 
@@ -132,36 +135,180 @@ function initStorySlider() {
 }
 
 /* --------------------------------------------------------------------------
-   Mobile Navigation Drawer
+   Springboard Mobile Navigation Drawer Controller
    -------------------------------------------------------------------------- */
+let mobileNavInitialized = false;
 function initMobileNav() {
-  const toggleBtn = document.getElementById('mobileNavToggle');
-  const drawer = document.getElementById('mobileDrawer');
+  if (mobileNavInitialized) return;
+  mobileNavInitialized = true;
+
+  let drawer = document.getElementById('mobileDrawer');
+
+  // If mobileDrawer does not exist in the DOM on this page, dynamically construct it
+  if (!drawer) {
+    drawer = document.createElement('div');
+    drawer.id = 'mobileDrawer';
+    drawer.className = 'mobile-drawer';
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-label', 'Mobile navigation menu');
+
+    const currentPath = window.location.pathname.toLowerCase();
+    const isHome = currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/women-s-health-center/') || (!currentPath.includes('.html') && !currentPath.includes('admin') && !currentPath.includes('user'));
+    const isAbout = currentPath.includes('about');
+    const isService = currentPath.includes('service');
+    const isBlog = currentPath.includes('blog');
+    const isContact = currentPath.includes('contact');
+
+    drawer.innerHTML = `
+      <div class="mobile-drawer-content">
+        <div class="drawer-header">
+          <div class="drawer-brand">
+            <img src="assets/img/stackly-icon.webp" alt="Stackly" style="height:32px;width:auto;">
+            <span class="drawer-brand-title">STACKLY</span>
+          </div>
+          <button id="closeMobileDrawer" class="drawer-close-btn" aria-label="Close navigation menu">✕</button>
+        </div>
+
+        <ul class="drawer-nav-list">
+          <li class="springboard-item"><a href="index.html" class="drawer-nav-link ${isHome ? 'active' : ''}"><span>🏠 Home</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="about.html" class="drawer-nav-link ${isAbout ? 'active' : ''}"><span>🏥 About Us</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="services.html" class="drawer-nav-link ${isService ? 'active' : ''}"><span>🩺 Clinical Services</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="blog.html" class="drawer-nav-link ${isBlog ? 'active' : ''}"><span>📰 Health Insights</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="contact.html" class="drawer-nav-link ${isContact ? 'active' : ''}"><span>📍 Contact &amp; OPD</span> <span>→</span></a></li>
+        </ul>
+
+        <div class="drawer-actions-wrap">
+          <a href="404.html" class="drawer-cta-btn springboard-item">
+            <span>Book Appointment</span>
+            <span>➔</span>
+          </a>
+          <div class="drawer-auth-row springboard-item">
+            <a href="login.html" class="drawer-auth-btn login">Sign In</a>
+            <a href="signup.html" class="drawer-auth-btn signup">Register</a>
+          </div>
+          <div class="drawer-emergency-info springboard-item">
+            <span style="font-size:18px;">🚨</span>
+            <div>
+              <strong style="color:#19042B;">24/7 Maternity Emergency</strong><br>
+              <a href="tel:+919876543210" style="color:#967BB6;font-weight:700;">+91 98765 43210</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(drawer);
+  }
+
+  const toggleBtns = document.querySelectorAll('.mobile-nav-toggle, #mobileNavToggle');
   const closeBtn = document.getElementById('closeMobileDrawer');
 
-  if (toggleBtn && drawer) {
-    toggleBtn.addEventListener('click', () => {
-      drawer.classList.add('open');
-      document.body.style.overflow = 'hidden';
+  function openMenu() {
+    drawer.classList.add('open');
+    document.body.classList.add('menu-open');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeMenu() {
+    drawer.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openMenu();
+    });
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenu();
     });
   }
 
-  if (closeBtn && drawer) {
-    closeBtn.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      document.body.style.overflow = '';
+  // Close when clicking outside content (backdrop)
+  drawer.addEventListener('click', (e) => {
+    if (e.target === drawer) {
+      closeMenu();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeMenu();
+    }
+  });
+
+  // Close when clicking any nav link
+  const drawerLinks = drawer.querySelectorAll('.drawer-nav-link, .drawer-cta-btn, .drawer-auth-btn');
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
     });
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Wobble Card Entrance Animation (Scroll-Triggered via IntersectionObserver)
+   -------------------------------------------------------------------------- */
+let wobbleObserverInitialized = false;
+function initWobbleCards() {
+  if (wobbleObserverInitialized) return;
+
+  // Respect reduced motion preference
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
   }
 
-  // Close when clicking outside content
-  if (drawer) {
-    drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) {
-        drawer.classList.remove('open');
-        document.body.style.overflow = '';
+  const cardSelectors = [
+    '.our-info_item',
+    '.story-slide-card',
+    '.service_item-wrap',
+    '.doctor_spotlight_card',
+    '.ui-card',
+    '.metric-card',
+    '.action-card',
+    '.dash-panel',
+    '.faq-item',
+    '.lead-form_card'
+  ];
+
+  const cards = document.querySelectorAll(cardSelectors.join(', '));
+  if (!cards.length) return;
+  wobbleObserverInitialized = true;
+
+  cards.forEach(card => {
+    card.classList.add('wobble-card-ready');
+  });
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        // Calculate stagger relative to sibling cards in parent
+        const parent = target.parentElement;
+        let index = 0;
+        if (parent) {
+          const siblings = Array.from(parent.children).filter(el => el.classList.contains('wobble-card-ready'));
+          index = Math.max(0, siblings.indexOf(target));
+        }
+        const delay = Math.min(index * 0.08, 0.4);
+        target.style.setProperty('--card-stagger-delay', `${delay}s`);
+        target.classList.add('wobble-card-enter');
+        obs.unobserve(target); // Animate once
       }
     });
-  }
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  cards.forEach(card => observer.observe(card));
 }
 
 /* --------------------------------------------------------------------------
