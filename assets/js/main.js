@@ -178,25 +178,12 @@ function initMobileNav() {
           <li class="springboard-item"><a href="services.html" class="drawer-nav-link ${isService ? 'active' : ''}"><span>🩺 Services</span> <span>→</span></a></li>
           <li class="springboard-item"><a href="blog.html" class="drawer-nav-link ${isBlog ? 'active' : ''}"><span>📰 Blog</span> <span>→</span></a></li>
           <li class="springboard-item"><a href="contact.html" class="drawer-nav-link ${isContact ? 'active' : ''}"><span>📍 Contact</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="login.html" class="drawer-nav-link ${isLogin ? 'active' : ''}"><span>🔐 Login</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="signup.html" class="drawer-nav-link ${isSignup ? 'active' : ''}"><span>✨ Signup</span> <span>→</span></a></li>
         </ul>
 
         <div class="drawer-actions-wrap">
           <div class="drawer-auth-row springboard-item">
             <a href="login.html" class="drawer-auth-btn login">Login</a>
             <a href="signup.html" class="drawer-auth-btn signup">Signup</a>
-          </div>
-          <a href="contact.html" class="drawer-cta-btn springboard-item">
-            <span>Book Appointment</span>
-            <span>➔</span>
-          </a>
-          <div class="drawer-emergency-info springboard-item">
-            <span style="font-size:18px;">🚨</span>
-            <div>
-              <strong style="color:#19042B;">24/7 Maternity Emergency</strong><br>
-              <a href="tel:+919876543210" style="color:#967BB6;font-weight:700;">+91 98765 43210</a>
-            </div>
           </div>
         </div>
       </div>
