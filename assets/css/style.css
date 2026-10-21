@@ -1897,19 +1897,24 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 7px;
+  gap: 8px;
+  padding: 10px 12px;
+  min-height: 38px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(239, 68, 68, 0.28);
+  border: 1px solid rgba(239, 68, 68, 0.5);
   color: #ffffff;
-  font-size: 12px;
-  font-weight: 700;
-  border: none;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.btn-sidebar-logout:hover {
-  background: rgba(239, 68, 68, 0.8);
+.btn-sidebar-logout:hover,
+.btn-sidebar-logout:active {
+  background: #EF4444;
+  border-color: #EF4444;
 }
 
 .dash-main {
@@ -2433,16 +2438,41 @@ button, input, select, textarea {
     position: fixed;
     top: 0;
     left: 0;
-    width: 280px;
+    width: 290px;
     height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     z-index: 10000;
     transform: translateX(-100%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
   .dash-sidebar.mobile-open {
     transform: translateX(0);
     box-shadow: 10px 0 35px rgba(30, 5, 51, 0.4);
+  }
+  .dash-sidebar .sidebar-menu {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+  }
+  .dash-sidebar .sidebar-footer {
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    background: #3B0764;
+    padding: 12px 14px;
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.35);
+    z-index: 10;
+  }
+  .dash-sidebar.admin-theme .sidebar-footer {
+    background: #19042B;
   }
   .dash-nav-toggle {
     display: flex !important;
