@@ -136,6 +136,21 @@ function initStorySlider() {
    -------------------------------------------------------------------------- */
 let mobileNavInitialized = false;
 function initMobileNav() {
+  const currentPath = window.location.pathname.toLowerCase();
+  const isDashboardPage = document.querySelector('.dashboard-layout') ||
+                          document.querySelector('.dash-sidebar') ||
+                          document.querySelector('.dash-main') ||
+                          currentPath.includes('dashboard') ||
+                          currentPath.includes('admin') ||
+                          currentPath.includes('user-');
+
+  // Strictly do NOT render or attach the public website drawer on dashboard pages
+  if (isDashboardPage) {
+    const existingDrawer = document.getElementById('mobileDrawer');
+    if (existingDrawer) existingDrawer.remove();
+    return;
+  }
+
   if (mobileNavInitialized) return;
   mobileNavInitialized = true;
 
@@ -150,7 +165,6 @@ function initMobileNav() {
     drawer.setAttribute('aria-modal', 'true');
     drawer.setAttribute('aria-label', 'Mobile navigation menu');
 
-    const currentPath = window.location.pathname.toLowerCase();
     const isHome = currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/women-s-health-center/') || (!currentPath.includes('.html') && !currentPath.includes('admin') && !currentPath.includes('user'));
     const isAbout = currentPath.includes('about');
     const isService = currentPath.includes('service');
@@ -188,7 +202,7 @@ function initMobileNav() {
     document.body.appendChild(drawer);
   }
 
-  const toggleBtns = document.querySelectorAll('.mobile-nav-toggle, #mobileNavToggle');
+  const toggleBtns = document.querySelectorAll('.mobile-nav-toggle:not(.dash-nav-toggle):not(#dashMenuToggle), #mobileNavToggle');
   const closeBtn = document.getElementById('closeMobileDrawer');
 
   function openMenu() {
@@ -588,20 +602,63 @@ window.syncDashboardUserInfo = function() {
 function initDashboardFeatures() {
   syncDashboardUserInfo();
 
-  // Mobile Dashboard Sidebar Toggle
-  const dashMenuBtn = document.getElementById('dashMenuToggle');
+  // Mobile Dashboard Sidebar Toggle & Backdrop
   const dashSidebar = document.querySelector('.dash-sidebar');
   const closeSidebarBtn = document.getElementById('closeDashSidebar');
 
-  if (dashMenuBtn && dashSidebar) {
-    dashMenuBtn.addEventListener('click', () => {
-      dashSidebar.classList.toggle('mobile-open');
-    });
-  }
+  if (dashSidebar) {
+    let backdrop = document.querySelector('.dash-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'dash-backdrop';
+      document.body.appendChild(backdrop);
+    }
 
-  if (closeSidebarBtn && dashSidebar) {
-    closeSidebarBtn.addEventListener('click', () => {
+    const openDashSidebar = () => {
+      dashSidebar.classList.add('mobile-open');
+      if (backdrop) backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeDashSidebar = () => {
       dashSidebar.classList.remove('mobile-open');
+      if (backdrop) backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    const dashToggles = document.querySelectorAll('#dashMenuToggle, .dash-nav-toggle');
+    dashToggles.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (dashSidebar.classList.contains('mobile-open')) {
+          closeDashSidebar();
+        } else {
+          openDashSidebar();
+        }
+      });
+    });
+
+    if (closeSidebarBtn) {
+      closeSidebarBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeDashSidebar();
+      });
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener('click', closeDashSidebar);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dashSidebar.classList.contains('mobile-open')) {
+        closeDashSidebar();
+      }
+    });
+
+    dashSidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeDashSidebar();
+      });
     });
   }
 

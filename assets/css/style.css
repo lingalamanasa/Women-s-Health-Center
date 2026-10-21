@@ -260,7 +260,8 @@ button, input, select, textarea {
 /* ==========================================================================
    SPRINGBOARD MOBILE NAVIGATION SYSTEM
    ========================================================================== */
-.mobile-nav-toggle {
+.mobile-nav-toggle,
+.dash-nav-toggle {
   display: none;
   align-items: center;
   justify-content: center;
@@ -276,17 +277,20 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
-.mobile-nav-toggle:hover {
+.mobile-nav-toggle:hover,
+.dash-nav-toggle:hover {
   background: #F3E8FF;
   transform: scale(1.05);
   border-color: #967BB6;
 }
 
-.mobile-nav-toggle:active {
+.mobile-nav-toggle:active,
+.dash-nav-toggle:active {
   transform: scale(0.95);
 }
 
-.mobile-nav-toggle:focus-visible {
+.mobile-nav-toggle:focus-visible,
+.dash-nav-toggle:focus-visible {
   outline: 2px solid #967BB6;
   outline-offset: 2px;
 }
@@ -2439,6 +2443,24 @@ button, input, select, textarea {
   .dash-sidebar.mobile-open {
     transform: translateX(0);
     box-shadow: 10px 0 35px rgba(30, 5, 51, 0.4);
+  }
+  .dash-nav-toggle {
+    display: flex !important;
+  }
+  .dash-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 5, 51, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .dash-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
   }
   .mobile-dash-brand {
     display: flex;
