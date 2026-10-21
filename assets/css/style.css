@@ -2360,15 +2360,9 @@ button, input, select, textarea {
   .nav-menu {
     display: none !important;
   }
-  .nav-actions .btn-signup {
-    display: none !important;
-  }
+  .nav-actions .btn-signup,
   .nav-actions .btn-login {
-    display: inline-flex !important;
-    padding: 6px 14px !important;
-    font-size: 13px !important;
-    height: 38px !important;
-    border-radius: 9999px !important;
+    display: none !important;
   }
   .mobile-nav-toggle {
     display: flex !important;
