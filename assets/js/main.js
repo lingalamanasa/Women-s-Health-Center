@@ -2,7 +2,7 @@
    STACKLY WOMEN'S HEALTH CENTER - JAVASCRIPT CONTROLLER
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
   initPreloader();
   initMobileNav();
   initHeroCarousel();
@@ -12,15 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initAuthLogic();
   initDashboardFeatures();
-});
+}
 
-// Also trigger immediate setup if document already running
-if (document.readyState === 'interactive' || document.readyState === 'complete') {
-  initPreloader();
-  initMobileNav();
-  initHeroCarousel();
-  initWobbleCards();
-  initDashboardFeatures();
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAll);
+} else {
+  initAll();
 }
 
 /* --------------------------------------------------------------------------
@@ -235,11 +232,17 @@ function initMobileNav() {
     }
   });
 
-  // Close when clicking any nav link
+  // Navigation for mobile drawer links
   const drawerLinks = drawer.querySelectorAll('.drawer-nav-link, .drawer-cta-btn, .drawer-auth-btn');
   drawerLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      closeMenu();
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('#')) {
+        // Direct navigation so mobile browsers never drop the tap
+        window.location.href = href;
+      } else {
+        closeMenu();
+      }
     });
   });
 }
@@ -354,8 +357,15 @@ function initForms() {
 /* --------------------------------------------------------------------------
    Authentication: Role Switcher & Sign In / Sign Up
    -------------------------------------------------------------------------- */
+let authLogicInitialized = false;
 function initAuthLogic() {
+  if (authLogicInitialized) return;
   const roleButtons = document.querySelectorAll('.role-toggle-btn');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  if (!roleButtons.length && !loginForm && !signupForm) return;
+  authLogicInitialized = true;
+
   let currentRole = 'user'; // default
 
   roleButtons.forEach(btn => {
@@ -365,18 +375,20 @@ function initAuthLogic() {
       currentRole = btn.dataset.role || 'user';
       
       const roleNotice = document.getElementById('roleNotice');
+      const emailInput = document.getElementById('loginEmail');
       if (roleNotice) {
         if (currentRole === 'admin') {
           roleNotice.innerText = '🛡️ Signing in to Hospital Administrator & Clinical Cockpit';
+          if (emailInput) emailInput.value = 'director.shilpi@thestackly.com';
         } else {
           roleNotice.innerText = '👤 Signing in to Patient Care Cloud & Telemetry Portal';
+          if (emailInput) emailInput.value = 'lingalamanasa123@gmail.com';
         }
       }
     });
   });
 
   // Login Form
-  const loginForm = document.getElementById('loginForm');
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -402,11 +414,21 @@ function initAuthLogic() {
         initials = userName.slice(0, 2).toUpperCase();
       }
 
-      // Save session
-      localStorage.setItem('stackly_user_email', email);
-      localStorage.setItem('stackly_user_name', userName);
-      localStorage.setItem('stackly_user_initials', initials);
-      localStorage.setItem('stackly_user_role', currentRole);
+      // Save session safely
+      try {
+        localStorage.setItem('stackly_user_email', email);
+        localStorage.setItem('stackly_user_name', userName);
+        localStorage.setItem('stackly_user_initials', initials);
+        localStorage.setItem('stackly_user_role', currentRole);
+      } catch (err) {
+        console.warn('Storage restricted:', err);
+      }
+
+      const submitBtn = loginForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Signing In...';
+      }
 
       showToast(`Welcome! Signing you in as ${userName}...`);
 
@@ -416,12 +438,11 @@ function initAuthLogic() {
         } else {
           window.location.href = 'dashboard-user.html';
         }
-      }, 700);
+      }, 500);
     });
   }
 
   // Signup Form
-  const signupForm = document.getElementById('signupForm');
   if (signupForm) {
     signupForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -435,10 +456,20 @@ function initAuthLogic() {
       const userName = `${fn} ${ln}`.trim();
       const initials = (fn[0] + (ln ? ln[0] : (fn[1] || 'M'))).toUpperCase();
 
-      localStorage.setItem('stackly_user_email', email);
-      localStorage.setItem('stackly_user_name', userName);
-      localStorage.setItem('stackly_user_initials', initials);
-      localStorage.setItem('stackly_user_role', currentRole);
+      try {
+        localStorage.setItem('stackly_user_email', email);
+        localStorage.setItem('stackly_user_name', userName);
+        localStorage.setItem('stackly_user_initials', initials);
+        localStorage.setItem('stackly_user_role', currentRole);
+      } catch (err) {
+        console.warn('Storage restricted:', err);
+      }
+
+      const submitBtn = signupForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Creating Account...';
+      }
 
       showToast(`Account Created Successfully! Welcome ${userName}!`);
 
@@ -448,7 +479,7 @@ function initAuthLogic() {
         } else {
           window.location.href = 'dashboard-user.html';
         }
-      }, 700);
+      }, 500);
     });
   }
 }
