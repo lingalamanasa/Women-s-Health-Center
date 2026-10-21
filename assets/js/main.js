@@ -159,6 +159,8 @@ function initMobileNav() {
     const isService = currentPath.includes('service');
     const isBlog = currentPath.includes('blog');
     const isContact = currentPath.includes('contact');
+    const isLogin = currentPath.includes('login');
+    const isSignup = currentPath.includes('signup');
 
     drawer.innerHTML = `
       <div class="mobile-drawer-content">
@@ -172,21 +174,23 @@ function initMobileNav() {
 
         <ul class="drawer-nav-list">
           <li class="springboard-item"><a href="index.html" class="drawer-nav-link ${isHome ? 'active' : ''}"><span>🏠 Home</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="about.html" class="drawer-nav-link ${isAbout ? 'active' : ''}"><span>🏥 About Us</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="services.html" class="drawer-nav-link ${isService ? 'active' : ''}"><span>🩺 Clinical Services</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="blog.html" class="drawer-nav-link ${isBlog ? 'active' : ''}"><span>📰 Health Insights</span> <span>→</span></a></li>
-          <li class="springboard-item"><a href="contact.html" class="drawer-nav-link ${isContact ? 'active' : ''}"><span>📍 Contact &amp; OPD</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="about.html" class="drawer-nav-link ${isAbout ? 'active' : ''}"><span>🏥 About</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="services.html" class="drawer-nav-link ${isService ? 'active' : ''}"><span>🩺 Services</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="blog.html" class="drawer-nav-link ${isBlog ? 'active' : ''}"><span>📰 Blog</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="contact.html" class="drawer-nav-link ${isContact ? 'active' : ''}"><span>📍 Contact</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="login.html" class="drawer-nav-link ${isLogin ? 'active' : ''}"><span>🔐 Login</span> <span>→</span></a></li>
+          <li class="springboard-item"><a href="signup.html" class="drawer-nav-link ${isSignup ? 'active' : ''}"><span>✨ Signup</span> <span>→</span></a></li>
         </ul>
 
         <div class="drawer-actions-wrap">
-          <a href="404.html" class="drawer-cta-btn springboard-item">
+          <div class="drawer-auth-row springboard-item">
+            <a href="login.html" class="drawer-auth-btn login">Login</a>
+            <a href="signup.html" class="drawer-auth-btn signup">Signup</a>
+          </div>
+          <a href="contact.html" class="drawer-cta-btn springboard-item">
             <span>Book Appointment</span>
             <span>➔</span>
           </a>
-          <div class="drawer-auth-row springboard-item">
-            <a href="login.html" class="drawer-auth-btn login">Sign In</a>
-            <a href="signup.html" class="drawer-auth-btn signup">Register</a>
-          </div>
           <div class="drawer-emergency-info springboard-item">
             <span style="font-size:18px;">🚨</span>
             <div>
