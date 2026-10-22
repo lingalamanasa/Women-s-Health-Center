@@ -1590,6 +1590,15 @@ button, input, select, textarea {
   justify-content: center;
   gap: 10px;
   margin-bottom: 12px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.auth-logo-center:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
 }
 
 .auth-cloud-badge {
