@@ -57,10 +57,10 @@
         </div>
 
         <!-- Form -->
-        <form id="loginForm" class="auth-form">
+        <form id="loginForm" class="auth-form" autocomplete="off">
           <div class="form-group">
             <label class="auth-input-label">Email or Staff ID *</label>
-            <input type="text" id="loginEmail" class="auth-input" placeholder="name@example.com or Staff ID" required>
+            <input type="text" id="loginEmail" class="auth-input" placeholder="name@example.com or Staff ID" required autocomplete="off" value="">
           </div>
 
           <div class="form-group">
@@ -68,12 +68,12 @@
               <span>Password *</span>
               <a href="404.html">Forgot password?</a>
             </div>
-            <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password" required>
+            <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password" required autocomplete="new-password" value="">
           </div>
 
           <div class="auth-row-meta">
             <label class="remember-label">
-              <input type="checkbox" checked style="accent-color:#967BB6;">
+              <input type="checkbox" id="rememberDevice" style="accent-color:#967BB6;">
               <span>Remember this device</span>
             </label>
             <a href="404.html" class="ssl-badge" style="text-decoration:none;cursor:pointer;">

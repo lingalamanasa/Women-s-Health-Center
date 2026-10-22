@@ -408,6 +408,32 @@ function initAuthLogic() {
 
   let currentRole = 'user'; // default
 
+  // Prevent browser autofill on page load for clean empty state
+  const authInputs = document.querySelectorAll('#loginEmail, #loginPassword, #signupFirstName, #signupLastName, #signupEmail, #signupPassword, #signupConfirmPassword');
+  authInputs.forEach(input => {
+    input.addEventListener('input', () => { input.dataset.userTyped = 'true'; });
+  });
+
+  const rememberCb = document.getElementById('rememberDevice');
+  if (rememberCb) rememberCb.addEventListener('change', () => { rememberCb.dataset.userClicked = 'true'; });
+  const agreeCb = document.getElementById('signupAgreeTerms');
+  if (agreeCb) agreeCb.addEventListener('change', () => { agreeCb.dataset.userClicked = 'true'; });
+
+  const clearAutofillDefaults = () => {
+    authInputs.forEach(input => {
+      if (!input.dataset.userTyped && document.activeElement !== input) {
+        input.value = '';
+      }
+    });
+    if (rememberCb && !rememberCb.dataset.userClicked) rememberCb.checked = false;
+    if (agreeCb && !agreeCb.dataset.userClicked) agreeCb.checked = false;
+  };
+
+  clearAutofillDefaults();
+  setTimeout(clearAutofillDefaults, 50);
+  setTimeout(clearAutofillDefaults, 200);
+  setTimeout(clearAutofillDefaults, 600);
+
   roleButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       roleButtons.forEach(b => b.classList.remove('active'));
@@ -533,11 +559,11 @@ window.fillDemoCredentials = function(role) {
 
   if (role === 'admin') {
     if (adminToggle) adminToggle.click();
-    if (emailInput) emailInput.value = 'director.shilpi@thestackly.com';
+    if (emailInput) emailInput.value = 'admin@thestackly.com';
     if (passInput) passInput.value = 'AdminPass2026!';
   } else {
     if (userToggle) userToggle.click();
-    if (emailInput) emailInput.value = 'lingalamanasa123@gmail.com';
+    if (emailInput) emailInput.value = 'user@thestackly.com';
     if (passInput) passInput.value = 'PatientPass2026!';
   }
 };

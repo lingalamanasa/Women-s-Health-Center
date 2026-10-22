@@ -56,37 +56,37 @@
         </div>
 
         <!-- Signup Form -->
-        <form id="signupForm" class="auth-form">
+        <form id="signupForm" class="auth-form" autocomplete="off">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div class="form-group">
               <label class="auth-input-label">First Name *</label>
-              <input type="text" id="signupFirstName" class="auth-input" placeholder="First Name" required>
+              <input type="text" id="signupFirstName" class="auth-input" placeholder="First Name" required autocomplete="off" value="">
             </div>
             <div class="form-group">
               <label class="auth-input-label">Last Name *</label>
-              <input type="text" id="signupLastName" class="auth-input" placeholder="Last Name" required>
+              <input type="text" id="signupLastName" class="auth-input" placeholder="Last Name" required autocomplete="off" value="">
             </div>
           </div>
 
           <div class="form-group">
             <label class="auth-input-label">Work / Personal Email *</label>
-            <input type="email" id="signupEmail" class="auth-input" placeholder="name@example.com" required>
+            <input type="email" id="signupEmail" class="auth-input" placeholder="name@example.com" required autocomplete="off" value="">
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div class="form-group">
               <label class="auth-input-label">Password *</label>
-              <input type="password" id="signupPassword" class="auth-input" placeholder="Create a password" required>
+              <input type="password" id="signupPassword" class="auth-input" placeholder="Create a password" required autocomplete="new-password" value="">
             </div>
             <div class="form-group">
               <label class="auth-input-label">Confirm Password *</label>
-              <input type="password" id="signupConfirmPassword" class="auth-input" placeholder="Confirm your password" required>
+              <input type="password" id="signupConfirmPassword" class="auth-input" placeholder="Confirm your password" required autocomplete="new-password" value="">
             </div>
           </div>
 
           <div class="auth-row-meta" style="margin-top:6px;">
             <label class="remember-label" style="font-size:12px;line-height:1.4;">
-              <input type="checkbox" checked required style="accent-color:#967BB6;">
+              <input type="checkbox" id="signupAgreeTerms" required style="accent-color:#967BB6;">
               <span>I agree to Stackly's <a href="#" style="color:#3B0764;font-weight:700;">Terms of Service</a>, <a href="#" style="color:#3B0764;font-weight:700;">SOC2 Security Agreement</a>, and <a href="#" style="color:#3B0764;font-weight:700;">Privacy Policy</a>.</span>
             </label>
           </div>
