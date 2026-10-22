@@ -393,10 +393,10 @@ function initAuthLogic() {
       if (roleNotice) {
         if (currentRole === 'admin') {
           roleNotice.innerText = '🛡️ Signing in to Hospital Administrator & Clinical Cockpit';
-          if (emailInput) emailInput.value = 'director.shilpi@thestackly.com';
+          if (emailInput && !emailInput.value) emailInput.placeholder = 'admin@thestackly.com or Staff ID';
         } else {
           roleNotice.innerText = '👤 Signing in to Patient Care Cloud & Telemetry Portal';
-          if (emailInput) emailInput.value = 'lingalamanasa123@gmail.com';
+          if (emailInput && !emailInput.value) emailInput.placeholder = 'name@example.com or Staff ID';
         }
       }
     });
@@ -407,7 +407,7 @@ function initAuthLogic() {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const emailInput = document.getElementById('loginEmail');
-      const inputVal = emailInput && emailInput.value ? emailInput.value.trim() : (currentRole === 'admin' ? 'director.shilpi@thestackly.com' : 'lingalamanasa123@gmail.com');
+      const inputVal = emailInput && emailInput.value ? emailInput.value.trim() : (currentRole === 'admin' ? 'admin@thestackly.com' : 'user@thestackly.com');
       
       let email = inputVal;
       let userName = '';
@@ -464,9 +464,9 @@ function initAuthLogic() {
       const lnInput = document.getElementById('signupLastName');
       const emailInput = document.getElementById('signupEmail');
 
-      const fn = fnInput && fnInput.value ? fnInput.value.trim() : 'Manasa';
-      const ln = lnInput && lnInput.value ? lnInput.value.trim() : 'Lingala';
-      const email = emailInput && emailInput.value ? emailInput.value.trim() : 'lingalamanasa123@gmail.com';
+      const fn = fnInput && fnInput.value ? fnInput.value.trim() : 'Patient';
+      const ln = lnInput && lnInput.value ? lnInput.value.trim() : '';
+      const email = emailInput && emailInput.value ? emailInput.value.trim() : 'patient@thestackly.com';
       const userName = `${fn} ${ln}`.trim();
       const initials = (fn[0] + (ln ? ln[0] : (fn[1] || 'M'))).toUpperCase();
 
