@@ -60,7 +60,7 @@
         <form id="loginForm" class="auth-form" autocomplete="off">
           <div class="form-group">
             <label class="auth-input-label">Email or Staff ID *</label>
-            <input type="text" id="loginEmail" class="auth-input" placeholder="name@example.com or Staff ID" required autocomplete="off" value="">
+            <input type="text" id="loginEmail" name="auth_identity_code" class="auth-input" placeholder="name@example.com or Staff ID" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
           </div>
 
           <div class="form-group">
@@ -68,7 +68,7 @@
               <span>Password *</span>
               <a href="404.html">Forgot password?</a>
             </div>
-            <input type="password" id="loginPassword" class="auth-input" placeholder="Enter your password" required autocomplete="new-password" value="">
+            <input type="text" id="loginPassword" name="auth_secret_code" class="auth-input pwd-mask" placeholder="Enter your password" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
           </div>
 
           <div class="auth-row-meta">
@@ -95,6 +95,24 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=30"></script>
+  <script>
+    (function() {
+      function forceCleanInputs() {
+        var e = document.getElementById('loginEmail');
+        var p = document.getElementById('loginPassword');
+        var r = document.getElementById('rememberDevice');
+        if (e && !e.dataset.userTyped) e.value = '';
+        if (p && !p.dataset.userTyped) p.value = '';
+        if (r && !r.dataset.userClicked) r.checked = false;
+      }
+      forceCleanInputs();
+      window.addEventListener('pageshow', forceCleanInputs);
+      document.addEventListener('DOMContentLoaded', forceCleanInputs);
+      setTimeout(forceCleanInputs, 50);
+      setTimeout(forceCleanInputs, 200);
+      setTimeout(forceCleanInputs, 500);
+    })();
+  </script>
 </body>
 </html>

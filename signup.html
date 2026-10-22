@@ -60,27 +60,27 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div class="form-group">
               <label class="auth-input-label">First Name *</label>
-              <input type="text" id="signupFirstName" class="auth-input" placeholder="First Name" required autocomplete="off" value="">
+              <input type="text" id="signupFirstName" name="auth_new_fn" class="auth-input" placeholder="First Name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
             </div>
             <div class="form-group">
               <label class="auth-input-label">Last Name *</label>
-              <input type="text" id="signupLastName" class="auth-input" placeholder="Last Name" required autocomplete="off" value="">
+              <input type="text" id="signupLastName" name="auth_new_ln" class="auth-input" placeholder="Last Name" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
             </div>
           </div>
 
           <div class="form-group">
             <label class="auth-input-label">Work / Personal Email *</label>
-            <input type="email" id="signupEmail" class="auth-input" placeholder="name@example.com" required autocomplete="off" value="">
+            <input type="text" id="signupEmail" name="auth_new_mail" class="auth-input" placeholder="name@example.com" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
           </div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
             <div class="form-group">
               <label class="auth-input-label">Password *</label>
-              <input type="password" id="signupPassword" class="auth-input" placeholder="Create a password" required autocomplete="new-password" value="">
+              <input type="text" id="signupPassword" name="auth_new_secret" class="auth-input pwd-mask" placeholder="Create a password" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
             </div>
             <div class="form-group">
               <label class="auth-input-label">Confirm Password *</label>
-              <input type="password" id="signupConfirmPassword" class="auth-input" placeholder="Confirm your password" required autocomplete="new-password" value="">
+              <input type="text" id="signupConfirmPassword" name="auth_confirm_secret" class="auth-input pwd-mask" placeholder="Confirm your password" required autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" value="">
             </div>
           </div>
 
@@ -104,6 +104,24 @@
     </div>
   </div>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=30"></script>
+  <script>
+    (function() {
+      function forceCleanInputs() {
+        ['signupFirstName', 'signupLastName', 'signupEmail', 'signupPassword', 'signupConfirmPassword'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el && !el.dataset.userTyped) el.value = '';
+        });
+        var a = document.getElementById('signupAgreeTerms');
+        if (a && !a.dataset.userClicked) a.checked = false;
+      }
+      forceCleanInputs();
+      window.addEventListener('pageshow', forceCleanInputs);
+      document.addEventListener('DOMContentLoaded', forceCleanInputs);
+      setTimeout(forceCleanInputs, 50);
+      setTimeout(forceCleanInputs, 200);
+      setTimeout(forceCleanInputs, 500);
+    })();
+  </script>
 </body>
 </html>
