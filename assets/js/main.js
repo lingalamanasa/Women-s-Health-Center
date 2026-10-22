@@ -343,8 +343,8 @@ function initFaqAccordion() {
    Interactive Forms & Appointments
    -------------------------------------------------------------------------- */
 function initForms() {
-  const leadForms = document.querySelectorAll('.lead-form, .appointment-form');
-  leadForms.forEach(form => {
+  const formsToValidate = document.querySelectorAll('.lead-form, .appointment-form, #doctorQueryForm');
+  formsToValidate.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -354,11 +354,24 @@ function initForms() {
         return;
       }
 
+      // Custom check for Doctor Messaging query length & whitespace
+      if (form.id === 'doctorQueryForm') {
+        const textarea = form.querySelector('#doctorQueryText');
+        const errorMsg = form.querySelector('#doctorQueryError');
+        if (textarea && (!textarea.value || textarea.value.trim().length < 5)) {
+          if (errorMsg) errorMsg.style.display = 'flex';
+          textarea.style.borderColor = '#dc2626';
+          textarea.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.15)';
+          textarea.focus();
+          return;
+        }
+      }
+
       // After filling the forms validly, redirect to 404 error page only
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Processing...';
+        submitBtn.innerText = form.id === 'doctorQueryForm' ? 'Sending...' : 'Processing...';
       }
 
       setTimeout(() => {
@@ -366,6 +379,19 @@ function initForms() {
       }, 300);
     });
   });
+
+  // Real-time error dismissal as user types
+  const docText = document.getElementById('doctorQueryText');
+  const docErr = document.getElementById('doctorQueryError');
+  if (docText && docErr) {
+    docText.addEventListener('input', () => {
+      if (docText.value.trim().length >= 5) {
+        docErr.style.display = 'none';
+        docText.style.borderColor = '#DDD6FE';
+        docText.style.boxShadow = 'none';
+      }
+    });
+  }
 }
 
 /* --------------------------------------------------------------------------
